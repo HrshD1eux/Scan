@@ -14,11 +14,12 @@ if (versionPropsFile.exists()) {
     versionProps.load(FileInputStream(versionPropsFile))
 }
 
-var currentVersionCode = (versionProps["VERSION_CODE"] as? String)?.toInt() ?: 1
+val ciRunNumber = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull()
+var currentVersionCode = ciRunNumber ?: ((versionProps["VERSION_CODE"] as? String)?.toInt() ?: 1)
 val versionNamePrefix = (versionProps["VERSION_NAME_PREFIX"] as? String) ?: "1.0."
 
 val isBuilding = gradle.startParameter.taskNames.any { it.contains("assemble") || it.contains("bundle") || it.contains("build") }
-if (isBuilding) {
+if (ciRunNumber == null && isBuilding) {
     currentVersionCode += 1
     versionProps["VERSION_CODE"] = currentVersionCode.toString()
     versionProps.store(FileOutputStream(versionPropsFile), null)
