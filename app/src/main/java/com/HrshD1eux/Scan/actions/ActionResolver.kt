@@ -33,7 +33,12 @@ class ActionResolver(private val context: Context) {
             is ParsedContent.Url -> {
                 actions.add(
                     Action("Open Link", Icons.Default.Language, isPrimary = true) {
-                        launchIntent(Intent(Intent.ACTION_VIEW, Uri.parse(content.url)))
+                        val uri = Uri.parse(content.url)
+                        try {
+                            androidx.browser.customtabs.CustomTabsIntent.Builder().build().launchUrl(context, uri)
+                        } catch (e: Exception) {
+                            launchIntent(Intent(Intent.ACTION_VIEW, uri))
+                        }
                     }
                 )
                 actions.add(createCopyAction(content.url))
@@ -76,8 +81,12 @@ class ActionResolver(private val context: Context) {
             is ParsedContent.Product -> {
                 actions.add(
                     Action("Search Web", Icons.Default.Search, isPrimary = true) {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=\${content.barcode}"))
-                        launchIntent(intent)
+                        val uri = Uri.parse("https://www.google.com/search?q=\${content.barcode}")
+                        try {
+                            androidx.browser.customtabs.CustomTabsIntent.Builder().build().launchUrl(context, uri)
+                        } catch (e: Exception) {
+                            launchIntent(Intent(Intent.ACTION_VIEW, uri))
+                        }
                     }
                 )
                 actions.add(createCopyAction(content.barcode))

@@ -7,6 +7,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.animation.animateContentSize
 import com.HrshD1eux.Scan.actions.Action
 import com.HrshD1eux.Scan.parser.ParsedContent
 
@@ -19,7 +27,8 @@ fun ResultScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .padding(24.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -58,11 +67,11 @@ fun ResultScreen(
             }
             is ParsedContent.UnknownBarcode -> {
                 Text("Barcode", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
-                Text(content.rawValue, style = MaterialTheme.typography.bodyLarge)
+                ExpandableText(content.rawValue)
             }
             is ParsedContent.Text -> {
                 Text("Scanned Text", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
-                Text(content.text, style = MaterialTheme.typography.bodyLarge)
+                ExpandableText(content.text)
             }
         }
 
@@ -93,6 +102,35 @@ fun ResultScreen(
 
         TextButton(onClick = onScanAgain) {
             Text("Scan Again")
+        }
+    }
+}
+
+@Composable
+fun ExpandableText(text: String) {
+    var expanded by remember { mutableStateOf(false) }
+    
+    Column(modifier = Modifier.animateContentSize()) {
+        if (expanded) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyLarge
+            )
+            TextButton(onClick = { expanded = false }, modifier = Modifier.align(Alignment.End)) {
+                Text("Show Less")
+            }
+        } else {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyLarge,
+                maxLines = 4,
+                overflow = TextOverflow.Ellipsis
+            )
+            if (text.lines().size > 4 || text.length > 150) {
+                TextButton(onClick = { expanded = true }, modifier = Modifier.align(Alignment.End)) {
+                    Text("Show More")
+                }
+            }
         }
     }
 }

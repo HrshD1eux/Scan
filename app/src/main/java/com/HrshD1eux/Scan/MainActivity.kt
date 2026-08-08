@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
                     val historyDao = remember { HistoryDatabase.getDatabase(context).historyDao() }
                     val settingsManager = remember { SettingsManager(context) }
                     val duplicateDetector = remember { DuplicateDetector() }
-
+                    
                     // Extracted processing function
                     fun processSingleBarcode(barcode: Barcode) {
                         val rawValue = barcode.rawValue ?: return
@@ -66,6 +67,20 @@ class MainActivity : ComponentActivity() {
                         scannedContent = content
                         detectedBarcodes = emptyList() // clear list once selected
                         
+                        // Auto-copy for text or unknown formats
+                        if (content is ParsedContent.Text || content is ParsedContent.UnknownBarcode || content is ParsedContent.Product) {
+                            val textToCopy = when(content) {
+                                is ParsedContent.Text -> content.text
+                                is ParsedContent.UnknownBarcode -> content.rawValue
+                                is ParsedContent.Product -> content.barcode
+                                else -> ""
+                            }
+                            val clipboardManager = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                            val clip = android.content.ClipData.newPlainText("Scanned Code", textToCopy)
+                            clipboardManager.setPrimaryClip(clip)
+                            android.widget.Toast.makeText(context, "Copied to clipboard", android.widget.Toast.LENGTH_SHORT).show()
+                        }
+
                         // Save history if enabled
                         lifecycleScope.launch {
                             val saveHistory = settingsManager.saveHistoryFlow.first()
@@ -85,6 +100,25 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
+
+                    LaunchedEffect(intent) {
+                        if (intent?.action == android.content.Intent.ACTION_SEND && intent.type?.startsWith("image/") == true) {
+                            @Suppress("DEPRECATION")
+                            val uri = intent.getParcelableExtra<android.net.Uri>(android.content.Intent.EXTRA_STREAM)
+                            if (uri != null) {
+                                com.HrshD1eux.Scan.camera.GalleryScanner.scanImage(context, uri) { barcodes ->
+                                    if (barcodes.isNotEmpty()) {
+                                        if (barcodes.size == 1) {
+                                            processSingleBarcode(barcodes.first())
+                                        } else {
+                                            detectedBarcodes = barcodes
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
 
                     when (currentScreen) {
                         "scanner" -> {

@@ -116,6 +116,9 @@ dependencies {
     // Preferences DataStore (for settings)
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+    // Chrome Custom Tabs
+    implementation("androidx.browser:browser:1.8.0")
+
     // Coil (Image Loading for Gallery scanning preview if needed)
     implementation("io.coil-kt:coil-compose:2.5.0")
 

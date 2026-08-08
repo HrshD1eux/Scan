@@ -54,12 +54,11 @@ This repository is equipped with a fully automated GitHub Actions pipeline.
 4. Run on a physical device (CameraX performance is best tested on physical hardware).
 
 ### Signing the Release
-To build a signed release version locally:
-- You must place your `release.jks` in the `app/` directory.
-- The `build.gradle.kts` expects the following credentials by default:
-  - Key Alias: `release`
-  - Password: `release123`
+To build a signed release version locally, you must configure your own signing key via `local.properties` or environment variables as defined in `build.gradle.kts`.
 
 ## License
 
-This project is open-source and free to use.
+This project is licensed under a Custom Non-Commercial License. 
+- **You may not sell or monetize this app.** 
+- **If you modify or share this software, you must provide clear credit to the original author (HrshD1eux).**
+See the `LICENSE` file for full details.
