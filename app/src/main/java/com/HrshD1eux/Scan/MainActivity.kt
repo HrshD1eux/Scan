@@ -8,6 +8,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import com.HrshD1eux.Scan.ui.theme.ScanTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,7 +47,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
+            ScanTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -101,6 +105,22 @@ class MainActivity : ComponentActivity() {
                         }
                     }
 
+                    val galleryLauncher = rememberLauncherForActivityResult(
+                        contract = ActivityResultContracts.GetContent()
+                    ) { uri ->
+                        if (uri != null) {
+                            com.HrshD1eux.Scan.camera.GalleryScanner.scanImage(context, uri) { barcodes ->
+                                if (barcodes.isNotEmpty()) {
+                                    if (barcodes.size == 1) {
+                                        processSingleBarcode(barcodes.first())
+                                    } else {
+                                        detectedBarcodes = barcodes
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     LaunchedEffect(intent) {
                         if (intent?.action == android.content.Intent.ACTION_SEND && intent.type?.startsWith("image/") == true) {
                             @Suppress("DEPRECATION")
@@ -116,6 +136,10 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             }
+                        } else if (intent?.action == "com.HrshD1eux.Scan.ACTION_SCAN_GALLERY") {
+                            galleryLauncher.launch("image/*")
+                        } else if (intent?.action == "com.HrshD1eux.Scan.ACTION_VIEW_HISTORY") {
+                            currentScreen = "history"
                         }
                     }
 

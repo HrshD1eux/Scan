@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Scan</string>
     <string name="app_description">Open instantly. Scan anything. Understand what it is. Give the user the correct action immediately.</string>
+    <string name="shortcut_gallery_short">Gallery</string>
+    <string name="shortcut_gallery_long">Scan from Gallery</string>
+    <string name="shortcut_history_short">History</string>
+    <string name="shortcut_history_long">View Scan History</string>
 </resources>
