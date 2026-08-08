@@ -672,6 +672,7 @@ drawable ic_call_answer_video
 drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
+drawable ic_qs_scanner
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1087,6 +1088,10 @@ string range_end
 string range_start
 string search_menu_title
 string selected
+string shortcut_gallery_long
+string shortcut_gallery_short
+string shortcut_history_long
+string shortcut_history_short
 string status_bar_notification_info_overflow
 string switch_role
 string tab
@@ -1499,4 +1504,6 @@ styleable ViewBackgroundHelper android_background backgroundTint backgroundTintM
 styleable ViewStubCompat android_id android_layout android_inflatedId
 xml backup_rules
 xml data_extraction_rules
+xml file_paths
 xml image_share_filepaths
+xml shortcuts

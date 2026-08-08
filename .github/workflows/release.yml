@@ -42,8 +42,11 @@ jobs:
       - name: Extract Version
         id: get_version
         run: |
+          VERSION_CODE_BASE=$(grep 'VERSION_CODE' app/version.properties | cut -d'=' -f2 | tr -d '\r')
           VERSION_PREFIX=$(grep 'VERSION_NAME_PREFIX' app/version.properties | cut -d'=' -f2 | tr -d '\r')
-          echo "VERSION_NAME=${VERSION_PREFIX}${{ github.run_number }}" >> $GITHUB_ENV
+          RUN_NUMBER=${{ github.run_number }}
+          VERSION_CODE=$((VERSION_CODE_BASE + RUN_NUMBER))
+          echo "VERSION_NAME=${VERSION_PREFIX}${VERSION_CODE}" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1

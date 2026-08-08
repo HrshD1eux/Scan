@@ -1,11 +1,18 @@
 R_DEF: Internal format may change without notice
 local
 color ic_launcher_background
+drawable ic_qs_scanner
 mipmap ic_launcher
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string app_description
 string app_name
+string shortcut_gallery_long
+string shortcut_gallery_short
+string shortcut_history_long
+string shortcut_history_short
 style Theme.Scan
 xml backup_rules
 xml data_extraction_rules
+xml file_paths
+xml shortcuts
