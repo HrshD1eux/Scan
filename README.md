@@ -19,7 +19,11 @@ Most barcode scanners are bloated with ads, telemetry, unnecessary onboarding sc
 - ⚡ **Instant Boot:** Optimized initialization using CameraX and ML Kit.
 - 🎯 **Multi-Code Selection:** When multiple codes are in frame, the app freezes the feed and lets you tap the exact one you want.
 - 🔦 **Smart Flashlight:** Uses the device's ambient light sensor to automatically enable the flashlight in low-light environments.
-- 🖼️ **Gallery Scanning:** Quickly parse codes from saved images or screenshots without launching the camera.
+- 🖼️ **Gallery Scanning & Share Target:** Quickly parse codes from saved images, or share an image from WhatsApp/Twitter directly to the Scan app.
+- 🌐 **In-App Browser:** Web links open instantly in a hyper-fast Chrome Custom Tab without throwing you out of the app.
+- 🎛️ **Quick Settings Tile:** Access the scanner instantly from your Android notification shade.
+- 🤏 **Camera Gestures:** Pinch-to-zoom and tap-to-focus built directly into the viewfinder.
+- 📋 **Auto-Copy:** Raw text and unknown barcodes are instantly copied to your clipboard on scan.
 - 🗄️ **Local History:** Optional Room-backed database to keep track of previous scans, processed entirely offline.
 - 📳 **Sensory Feedback:** Haptic and audio feedback upon successful scan, fully configurable.
 
@@ -58,7 +62,18 @@ To build a signed release version locally, you must configure your own signing k
 
 ## License
 
-This project is licensed under a Custom Non-Commercial License. 
-- **You may not sell or monetize this app.** 
-- **If you modify or share this software, you must provide clear credit to the original author (HrshD1eux).**
-See the `LICENSE` file for full details.
+This project is licensed under a **Custom Non-Commercial License**. 
+
+```text
+License Agreement
+
+Copyright (c) 2026 HrshD1eux
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, and/or sublicense copies of the Software, subject to the following conditions:
+
+1. Non-Commercial Use: You may NOT use this Software, or any modifications or derivatives of this Software, for commercial purposes. You may not sell, lease, or charge a fee for this Software or any part of it.
+
+2. Attribution: If you modify, share, or distribute this Software in any form, you MUST provide clear and prominent credit to the original author (HrshD1eux) and include a link to the original repository.
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
