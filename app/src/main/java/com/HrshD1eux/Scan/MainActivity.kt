@@ -11,12 +11,12 @@ import androidx.compose.material3.Text
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import com.HrshD1eux.Scan.ui.theme.ScanTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -62,10 +62,32 @@ class MainActivity : ComponentActivity() {
                     val settingsManager = remember { SettingsManager(context) }
                     val duplicateDetector = remember { DuplicateDetector() }
                     
+                    val hapticEnabled by settingsManager.hapticFeedbackFlow.collectAsState(initial = true)
+                    val soundEnabled by settingsManager.soundFeedbackFlow.collectAsState(initial = true)
+
                     // Extracted processing function
                     fun processSingleBarcode(barcode: Barcode) {
                         val rawValue = barcode.rawValue ?: return
                         if (duplicateDetector.isDuplicate(rawValue)) return
+
+                        // Haptic / Sound feedback
+                        if (hapticEnabled) {
+                            val vibrator = context.getSystemService(android.content.Context.VIBRATOR_SERVICE) as android.os.Vibrator
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                vibrator.vibrate(android.os.VibrationEffect.createOneShot(50, android.os.VibrationEffect.DEFAULT_AMPLITUDE))
+                            } else {
+                                @Suppress("DEPRECATION")
+                                vibrator.vibrate(50)
+                            }
+                        }
+                        if (soundEnabled) {
+                            try {
+                                val tg = android.media.ToneGenerator(android.media.AudioManager.STREAM_NOTIFICATION, 100)
+                                tg.startTone(android.media.ToneGenerator.TONE_PROP_BEEP, 100)
+                            } catch (e: Exception) {
+                                // Ignore
+                            }
+                        }
 
                         val content = ContentClassifier.classify(barcode)
                         scannedContent = content

@@ -24,6 +24,9 @@ import com.HrshD1eux.Scan.camera.GalleryScanner
 import com.HrshD1eux.Scan.camera.LightSensorManager
 import com.HrshD1eux.Scan.ui.settings.SettingsManager
 import com.google.mlkit.vision.barcode.common.Barcode
+import androidx.compose.foundation.Canvas
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
 
 @androidx.camera.core.ExperimentalGetImage
 @Composable
@@ -102,6 +105,52 @@ fun ScannerScreen(
                 isFlashlightOn = isFlashlightOn,
                 modifier = Modifier.fillMaxSize()
             )
+
+            // Viewfinder reticle overlay
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 80.dp), // offset slightly upward from the bottom buttons
+                contentAlignment = Alignment.Center
+            ) {
+                Canvas(modifier = Modifier.size(240.dp)) {
+                    val strokeWidth = 4.dp.toPx()
+                    val cornerLength = 40.dp.toPx()
+                    val color = Color.White.copy(alpha = 0.8f)
+                    
+                    // Top-Left corner
+                    val pathTl = Path().apply {
+                        moveTo(0f, cornerLength)
+                        lineTo(0f, 0f)
+                        lineTo(cornerLength, 0f)
+                    }
+                    drawPath(pathTl, color, style = Stroke(strokeWidth))
+                    
+                    // Top-Right corner
+                    val pathTr = Path().apply {
+                        moveTo(size.width - cornerLength, 0f)
+                        lineTo(size.width, 0f)
+                        lineTo(size.width, cornerLength)
+                    }
+                    drawPath(pathTr, color, style = Stroke(strokeWidth))
+                    
+                    // Bottom-Left corner
+                    val pathBl = Path().apply {
+                        moveTo(0f, size.height - cornerLength)
+                        lineTo(0f, size.height)
+                        lineTo(cornerLength, size.height)
+                    }
+                    drawPath(pathBl, color, style = Stroke(strokeWidth))
+                    
+                    // Bottom-Right corner
+                    val pathBr = Path().apply {
+                        moveTo(size.width - cornerLength, size.height)
+                        lineTo(size.width, size.height)
+                        lineTo(size.width, size.height - cornerLength)
+                    }
+                    drawPath(pathBr, color, style = Stroke(strokeWidth))
+                }
+            }
 
             // Controls Overlay
             Row(

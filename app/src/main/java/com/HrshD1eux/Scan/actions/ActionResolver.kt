@@ -61,7 +61,7 @@ class ActionResolver(private val context: Context) {
             is ParsedContent.Phone -> {
                 actions.add(
                     Action("Call", Icons.Default.Phone, isPrimary = true) {
-                        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:\${content.number}"))
+                        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${content.number}"))
                         launchIntent(intent)
                     }
                 )
@@ -70,7 +70,7 @@ class ActionResolver(private val context: Context) {
             is ParsedContent.Email -> {
                 actions.add(
                     Action("Send Email", Icons.Default.Language, isPrimary = true) {
-                        val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:\${content.address}"))
+                        val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:${content.address}"))
                         content.subject?.let { intent.putExtra(Intent.EXTRA_SUBJECT, it) }
                         content.body?.let { intent.putExtra(Intent.EXTRA_TEXT, it) }
                         launchIntent(intent)
@@ -81,7 +81,7 @@ class ActionResolver(private val context: Context) {
             is ParsedContent.Product -> {
                 actions.add(
                     Action("Search Web", Icons.Default.Search, isPrimary = true) {
-                        val uri = Uri.parse("https://www.google.com/search?q=\${content.barcode}")
+                        val uri = Uri.parse("https://www.google.com/search?q=${content.barcode}")
                         try {
                             androidx.browser.customtabs.CustomTabsIntent.Builder().build().launchUrl(context, uri)
                         } catch (e: Exception) {
