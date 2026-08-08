@@ -14,6 +14,10 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Wifi
+import androidx.compose.material.icons.filled.VpnKey
+import androidx.compose.material.icons.filled.Contacts
+import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.Message
 import com.HrshD1eux.Scan.parser.ParsedContent
 
 class ActionResolver(private val context: Context) {
@@ -98,6 +102,52 @@ class ActionResolver(private val context: Context) {
             is ParsedContent.Text -> {
                 actions.add(createCopyAction(content.text, "Copy Text", isPrimary = true))
                 actions.add(createShareAction(content.text))
+            }
+            is ParsedContent.Otp -> {
+                actions.add(
+                    Action("Add to Authenticator", Icons.Default.VpnKey, isPrimary = true) {
+                        launchIntent(Intent(Intent.ACTION_VIEW, content.rawUri))
+                    }
+                )
+                content.secret?.let {
+                    actions.add(createCopyAction(it, "Copy Secret Key"))
+                }
+            }
+            is ParsedContent.Contact -> {
+                actions.add(
+                    Action("Add to Contacts", Icons.Default.Contacts, isPrimary = true) {
+                        val intent = Intent(Intent.ACTION_INSERT).apply {
+                            type = android.provider.ContactsContract.Contacts.CONTENT_TYPE
+                            putExtra(android.provider.ContactsContract.Intents.Insert.NAME, content.name)
+                            putExtra(android.provider.ContactsContract.Intents.Insert.PHONE, content.phone)
+                            putExtra(android.provider.ContactsContract.Intents.Insert.EMAIL, content.email)
+                            putExtra(android.provider.ContactsContract.Intents.Insert.COMPANY, content.org)
+                        }
+                        launchIntent(intent)
+                    }
+                )
+                content.phone?.let { actions.add(createCopyAction(it, "Copy Phone")) }
+                content.email?.let { actions.add(createCopyAction(it, "Copy Email")) }
+            }
+            is ParsedContent.Geo -> {
+                actions.add(
+                    Action("Open in Maps", Icons.Default.Place, isPrimary = true) {
+                        val uri = Uri.parse("geo:${content.latitude},${content.longitude}?q=${content.latitude},${content.longitude}")
+                        launchIntent(Intent(Intent.ACTION_VIEW, uri))
+                    }
+                )
+                actions.add(createCopyAction("${content.latitude},${content.longitude}", "Copy Coordinates"))
+            }
+            is ParsedContent.Sms -> {
+                actions.add(
+                    Action("Send SMS", Icons.Default.Message, isPrimary = true) {
+                        val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:${content.phoneNumber}")).apply {
+                            putExtra("sms_body", content.message)
+                        }
+                        launchIntent(intent)
+                    }
+                )
+                content.message?.let { actions.add(createCopyAction(it, "Copy Message")) }
             }
         }
         return actions

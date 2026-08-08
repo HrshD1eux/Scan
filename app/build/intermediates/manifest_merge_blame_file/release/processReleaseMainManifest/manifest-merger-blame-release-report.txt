@@ -60,7 +60,7 @@
 37
 38    <!-- Queries to check if intents can be resolved (e.g., UPI, WhatsApp) -->
 39    <queries>
-39-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:26:5-40:15
+39-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:26:5-45:15
 40
 41        <!-- UPI apps -->
 42        <intent>
@@ -92,292 +92,303 @@
 55-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:30:13-42
 55-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:30:19-39
 56        </intent>
-57    </queries>
-58
-59    <permission
-59-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
-60        android:name="com.HrshD1eux.Scan.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-60-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
-61        android:protectionLevel="signature" />
-61-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
-62
-63    <uses-permission android:name="com.HrshD1eux.Scan.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-63-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
-63-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+57        <!-- Authenticator Apps -->
+58        <intent>
+58-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:41:9-44:18
+59            <action android:name="android.intent.action.VIEW" />
+59-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:29:13-65
+59-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:29:21-62
+60
+61            <data android:scheme="otpauth" />
+61-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:30:13-42
+61-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:30:19-39
+62        </intent>
+63    </queries>
 64
-65    <application
-65-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:42:5-91:19
-66        android:allowBackup="false"
-66-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:43:9-36
-67        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-67-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
-68        android:dataExtractionRules="@xml/data_extraction_rules"
-68-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:44:9-65
-69        android:extractNativeLibs="false"
-70        android:fullBackupContent="@xml/backup_rules"
-70-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:45:9-54
-71        android:icon="@mipmap/ic_launcher"
-71-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:46:9-43
-72        android:label="@string/app_name"
-72-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:47:9-41
-73        android:roundIcon="@mipmap/ic_launcher_round"
-73-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:48:9-54
-74        android:supportsRtl="true"
-74-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:49:9-35
-75        android:theme="@style/Theme.Scan" >
-75-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:50:9-42
-76        <activity
-76-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:52:9-69:20
-77            android:name="com.HrshD1eux.Scan.MainActivity"
-77-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:53:13-41
-78            android:exported="true"
-78-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:54:13-36
-79            android:theme="@style/Theme.Scan"
-79-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:55:13-46
-80            android:windowSoftInputMode="adjustResize" >
-80-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:56:13-55
-81            <intent-filter>
-81-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:57:13-60:29
-82                <action android:name="android.intent.action.MAIN" />
-82-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:58:17-69
-82-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:58:25-66
-83
-84                <category android:name="android.intent.category.LAUNCHER" />
-84-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:59:17-77
-84-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:59:27-74
-85            </intent-filter>
-86            <intent-filter>
-86-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:61:13-65:29
-87                <action android:name="android.intent.action.SEND" />
-87-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:62:17-69
-87-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:62:25-66
-88
-89                <category android:name="android.intent.category.DEFAULT" />
-89-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:63:17-76
-89-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:63:27-73
-90
-91                <data android:mimeType="image/*" />
-91-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:30:13-42
-91-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:64:23-49
-92            </intent-filter>
-93
-94            <meta-data
-94-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:66:13-68:53
-95                android:name="android.app.shortcuts"
-95-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:67:17-53
-96                android:resource="@xml/shortcuts" />
-96-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:68:17-50
-97        </activity>
-98
-99        <service
-99-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:71:9-80:19
-100            android:name="com.HrshD1eux.Scan.ScanTileService"
-100-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:72:13-44
-101            android:exported="true"
-101-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:76:13-36
-102            android:icon="@drawable/ic_qs_scanner"
-102-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:74:13-51
-103            android:label="@string/app_name"
-103-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:73:13-45
-104            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
-104-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:75:13-77
-105            <intent-filter>
-105-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:77:13-79:29
-106                <action android:name="android.service.quicksettings.action.QS_TILE" />
-106-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:78:17-87
-106-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:78:25-84
-107            </intent-filter>
-108        </service>
-109
-110        <provider
-111            android:name="androidx.core.content.FileProvider"
-111-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:83:13-62
-112            android:authorities="com.HrshD1eux.Scan.provider"
-112-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:84:13-60
-113            android:exported="false"
-113-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:85:13-37
-114            android:grantUriPermissions="true" >
-114-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:86:13-47
-115            <meta-data
-115-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:87:13-89:54
-116                android:name="android.support.FILE_PROVIDER_PATHS"
-116-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:88:17-67
-117                android:resource="@xml/file_paths" />
-117-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:89:17-51
-118        </provider>
-119
-120        <service
-120-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:24:9-33:19
-121            android:name="androidx.camera.core.impl.MetadataHolderService"
-121-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:25:13-75
-122            android:enabled="false"
-122-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:26:13-36
-123            android:exported="false" >
-123-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:27:13-37
-124            <meta-data
-124-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:30:13-32:89
-125                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
-125-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:31:17-103
-126                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
-126-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:32:17-86
-127        </service>
-128        <service
-128-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:9:9-15:19
-129            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
-129-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:10:13-91
-130            android:directBootAware="true"
-130-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:17:13-43
-131            android:exported="false" >
-131-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:11:13-37
-132            <meta-data
-132-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:12:13-14:85
-133                android:name="com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar"
-133-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:13:17-120
-134                android:value="com.google.firebase.components.ComponentRegistrar" />
-134-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:14:17-82
-135            <meta-data
-135-->[com.google.mlkit:vision-common:17.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\11e4547137976a1c89138832515f482c\transformed\vision-common-17.3.0\AndroidManifest.xml:12:13-14:85
-136                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
-136-->[com.google.mlkit:vision-common:17.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\11e4547137976a1c89138832515f482c\transformed\vision-common-17.3.0\AndroidManifest.xml:13:17-124
-137                android:value="com.google.firebase.components.ComponentRegistrar" />
-137-->[com.google.mlkit:vision-common:17.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\11e4547137976a1c89138832515f482c\transformed\vision-common-17.3.0\AndroidManifest.xml:14:17-82
+65    <permission
+65-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+66        android:name="com.HrshD1eux.Scan.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+66-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+67        android:protectionLevel="signature" />
+67-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+68
+69    <uses-permission android:name="com.HrshD1eux.Scan.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+69-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+69-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+70
+71    <application
+71-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:47:5-96:19
+72        android:allowBackup="false"
+72-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:48:9-36
+73        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+73-->[androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+74        android:dataExtractionRules="@xml/data_extraction_rules"
+74-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:49:9-65
+75        android:extractNativeLibs="false"
+76        android:fullBackupContent="@xml/backup_rules"
+76-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:50:9-54
+77        android:icon="@mipmap/ic_launcher"
+77-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:51:9-43
+78        android:label="@string/app_name"
+78-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:52:9-41
+79        android:roundIcon="@mipmap/ic_launcher_round"
+79-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:53:9-54
+80        android:supportsRtl="true"
+80-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:54:9-35
+81        android:theme="@style/Theme.Scan" >
+81-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:55:9-42
+82        <activity
+82-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:57:9-74:20
+83            android:name="com.HrshD1eux.Scan.MainActivity"
+83-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:58:13-41
+84            android:exported="true"
+84-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:59:13-36
+85            android:theme="@style/Theme.Scan"
+85-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:60:13-46
+86            android:windowSoftInputMode="adjustResize" >
+86-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:61:13-55
+87            <intent-filter>
+87-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:62:13-65:29
+88                <action android:name="android.intent.action.MAIN" />
+88-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:63:17-69
+88-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:63:25-66
+89
+90                <category android:name="android.intent.category.LAUNCHER" />
+90-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:64:17-77
+90-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:64:27-74
+91            </intent-filter>
+92            <intent-filter>
+92-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:66:13-70:29
+93                <action android:name="android.intent.action.SEND" />
+93-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:67:17-69
+93-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:67:25-66
+94
+95                <category android:name="android.intent.category.DEFAULT" />
+95-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:68:17-76
+95-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:68:27-73
+96
+97                <data android:mimeType="image/*" />
+97-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:30:13-42
+97-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:69:23-49
+98            </intent-filter>
+99
+100            <meta-data
+100-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:71:13-73:53
+101                android:name="android.app.shortcuts"
+101-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:72:17-53
+102                android:resource="@xml/shortcuts" />
+102-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:73:17-50
+103        </activity>
+104
+105        <service
+105-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:76:9-85:19
+106            android:name="com.HrshD1eux.Scan.ScanTileService"
+106-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:77:13-44
+107            android:exported="true"
+107-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:81:13-36
+108            android:icon="@drawable/ic_qs_scanner"
+108-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:79:13-51
+109            android:label="@string/app_name"
+109-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:78:13-45
+110            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
+110-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:80:13-77
+111            <intent-filter>
+111-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:82:13-84:29
+112                <action android:name="android.service.quicksettings.action.QS_TILE" />
+112-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:83:17-87
+112-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:83:25-84
+113            </intent-filter>
+114        </service>
+115
+116        <provider
+117            android:name="androidx.core.content.FileProvider"
+117-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:88:13-62
+118            android:authorities="com.HrshD1eux.Scan.provider"
+118-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:89:13-60
+119            android:exported="false"
+119-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:90:13-37
+120            android:grantUriPermissions="true" >
+120-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:91:13-47
+121            <meta-data
+121-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:92:13-94:54
+122                android:name="android.support.FILE_PROVIDER_PATHS"
+122-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:93:17-67
+123                android:resource="@xml/file_paths" />
+123-->H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:94:17-51
+124        </provider>
+125
+126        <service
+126-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:24:9-33:19
+127            android:name="androidx.camera.core.impl.MetadataHolderService"
+127-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:25:13-75
+128            android:enabled="false"
+128-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:26:13-36
+129            android:exported="false" >
+129-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:27:13-37
+130            <meta-data
+130-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:30:13-32:89
+131                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+131-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:31:17-103
+132                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+132-->[androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:32:17-86
+133        </service>
+134        <service
+134-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:9:9-15:19
+135            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+135-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:10:13-91
+136            android:directBootAware="true"
+136-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:17:13-43
+137            android:exported="false" >
+137-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:11:13-37
 138            <meta-data
-138-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:20:13-22:85
-139                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
-139-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:21:17-120
+138-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:12:13-14:85
+139                android:name="com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar"
+139-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:13:17-120
 140                android:value="com.google.firebase.components.ComponentRegistrar" />
-140-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:22:17-82
-141        </service>
-142
-143        <provider
-143-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:9:9-13:38
-144            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
-144-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:10:13-78
-145            android:authorities="com.HrshD1eux.Scan.mlkitinitprovider"
-145-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:11:13-69
-146            android:exported="false"
-146-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:12:13-37
-147            android:initOrder="99" />
-147-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:13:13-35
+140-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\271fb43b87c251c07f752cc0ce28bf57\transformed\play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:14:17-82
+141            <meta-data
+141-->[com.google.mlkit:vision-common:17.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\11e4547137976a1c89138832515f482c\transformed\vision-common-17.3.0\AndroidManifest.xml:12:13-14:85
+142                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
+142-->[com.google.mlkit:vision-common:17.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\11e4547137976a1c89138832515f482c\transformed\vision-common-17.3.0\AndroidManifest.xml:13:17-124
+143                android:value="com.google.firebase.components.ComponentRegistrar" />
+143-->[com.google.mlkit:vision-common:17.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\11e4547137976a1c89138832515f482c\transformed\vision-common-17.3.0\AndroidManifest.xml:14:17-82
+144            <meta-data
+144-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:20:13-22:85
+145                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+145-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:21:17-120
+146                android:value="com.google.firebase.components.ComponentRegistrar" />
+146-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:22:17-82
+147        </service>
 148
-149        <activity
-149-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
-150            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-150-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
-151            android:exported="false"
-151-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
-152            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-152-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
-153
-154        <meta-data
-154-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e4c22113321140323d2c48d4bc970d6b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
-155            android:name="com.google.android.gms.version"
-155-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e4c22113321140323d2c48d4bc970d6b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
-156            android:value="@integer/google_play_services_version" />
-156-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e4c22113321140323d2c48d4bc970d6b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
-157
-158        <provider
-158-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-159            android:name="androidx.startup.InitializationProvider"
-159-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-160            android:authorities="com.HrshD1eux.Scan.androidx-startup"
-160-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-161            android:exported="false" >
-161-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-162            <meta-data
-162-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-163                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-163-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-164                android:value="androidx.startup" />
-164-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-165            <meta-data
-165-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\07e286d2beb2dc2d3479d5f692bae670\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
-166                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-166-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\07e286d2beb2dc2d3479d5f692bae670\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
-167                android:value="androidx.startup" />
-167-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\07e286d2beb2dc2d3479d5f692bae670\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+149        <provider
+149-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:9:9-13:38
+150            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+150-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:10:13-78
+151            android:authorities="com.HrshD1eux.Scan.mlkitinitprovider"
+151-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:11:13-69
+152            android:exported="false"
+152-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:12:13-37
+153            android:initOrder="99" />
+153-->[com.google.mlkit:common:18.9.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e5c0f34db4b20af375208974d37a201\transformed\common-18.9.0\AndroidManifest.xml:13:13-35
+154
+155        <activity
+155-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+156            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+156-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+157            android:exported="false"
+157-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+158            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+158-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+159
+160        <meta-data
+160-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e4c22113321140323d2c48d4bc970d6b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+161            android:name="com.google.android.gms.version"
+161-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e4c22113321140323d2c48d4bc970d6b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+162            android:value="@integer/google_play_services_version" />
+162-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e4c22113321140323d2c48d4bc970d6b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+163
+164        <provider
+164-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+165            android:name="androidx.startup.InitializationProvider"
+165-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+166            android:authorities="com.HrshD1eux.Scan.androidx-startup"
+166-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+167            android:exported="false" >
+167-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
 168            <meta-data
-168-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
-169                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-169-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+168-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+169                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+169-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
 170                android:value="androidx.startup" />
-170-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
-171        </provider>
-172
-173        <service
-173-->[androidx.room:room-runtime:2.6.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
-174            android:name="androidx.room.MultiInstanceInvalidationService"
-174-->[androidx.room:room-runtime:2.6.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
-175            android:directBootAware="true"
-175-->[androidx.room:room-runtime:2.6.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
-176            android:exported="false" />
-176-->[androidx.room:room-runtime:2.6.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
-177        <service
-177-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
-178            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-178-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
-179            android:exported="false" >
-179-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
-180            <meta-data
-180-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
-181                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-181-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
-182                android:value="cct" />
-182-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
-183        </service>
-184        <service
-184-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:26:9-30:19
-185            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-185-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:27:13-117
-186            android:exported="false"
-186-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:28:13-37
-187            android:permission="android.permission.BIND_JOB_SERVICE" >
-187-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:29:13-69
-188        </service>
-189
-190        <receiver
-190-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:32:9-34:40
-191            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-191-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:33:13-132
-192            android:exported="false" />
-192-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:34:13-37
-193        <receiver
-193-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-194            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-194-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
-195            android:directBootAware="false"
-195-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
-196            android:enabled="true"
-196-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
-197            android:exported="true"
-197-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
-198            android:permission="android.permission.DUMP" >
-198-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
-199            <intent-filter>
-199-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
-200                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-200-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
-200-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
-201            </intent-filter>
-202            <intent-filter>
-202-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
-203                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-203-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
-203-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
-204            </intent-filter>
+170-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+171            <meta-data
+171-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\07e286d2beb2dc2d3479d5f692bae670\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+172                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+172-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\07e286d2beb2dc2d3479d5f692bae670\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+173                android:value="androidx.startup" />
+173-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\07e286d2beb2dc2d3479d5f692bae670\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+174            <meta-data
+174-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+175                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+175-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+176                android:value="androidx.startup" />
+176-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+177        </provider>
+178
+179        <service
+179-->[androidx.room:room-runtime:2.6.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+180            android:name="androidx.room.MultiInstanceInvalidationService"
+180-->[androidx.room:room-runtime:2.6.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+181            android:directBootAware="true"
+181-->[androidx.room:room-runtime:2.6.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+182            android:exported="false" />
+182-->[androidx.room:room-runtime:2.6.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+183        <service
+183-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
+184            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+184-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
+185            android:exported="false" >
+185-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
+186            <meta-data
+186-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
+187                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+187-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
+188                android:value="cct" />
+188-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ef2414b49be458dc0d2878f522de2775\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
+189        </service>
+190        <service
+190-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:26:9-30:19
+191            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+191-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:27:13-117
+192            android:exported="false"
+192-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:28:13-37
+193            android:permission="android.permission.BIND_JOB_SERVICE" >
+193-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:29:13-69
+194        </service>
+195
+196        <receiver
+196-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:32:9-34:40
+197            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+197-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:33:13-132
+198            android:exported="false" />
+198-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\940d48d890e8091ebcbd233589147c57\transformed\transport-runtime-2.2.6\AndroidManifest.xml:34:13-37
+199        <receiver
+199-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+200            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+200-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+201            android:directBootAware="false"
+201-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+202            android:enabled="true"
+202-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+203            android:exported="true"
+203-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+204            android:permission="android.permission.DUMP" >
+204-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
 205            <intent-filter>
-205-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
-206                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-206-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
-206-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+205-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+206                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+206-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+206-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
 207            </intent-filter>
 208            <intent-filter>
-208-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
-209                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-209-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
-209-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+208-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+209                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+209-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+209-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
 210            </intent-filter>
-211        </receiver>
-212    </application>
-213
-214</manifest>
+211            <intent-filter>
+211-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+212                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+212-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+212-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+213            </intent-filter>
+214            <intent-filter>
+214-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+215                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+215-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+215-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+216            </intent-filter>
+217        </receiver>
+218    </application>
+219
+220</manifest>

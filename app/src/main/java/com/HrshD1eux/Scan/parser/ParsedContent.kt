@@ -11,4 +11,8 @@ sealed class ParsedContent {
     data class Text(val text: String) : ParsedContent()
     data class Product(val barcode: String, val format: Int) : ParsedContent()
     data class UnknownBarcode(val rawValue: String, val format: Int) : ParsedContent()
+    data class Otp(val label: String, val secret: String?, val issuer: String?, val rawUri: Uri) : ParsedContent()
+    data class Contact(val name: String, val phone: String?, val email: String?, val org: String?) : ParsedContent()
+    data class Geo(val latitude: Double, val longitude: Double, val query: String?) : ParsedContent()
+    data class Sms(val phoneNumber: String, val message: String?) : ParsedContent()
 }

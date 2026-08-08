@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:82:9-90:20
+INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:87:9-95:20
 	android:grantUriPermissions
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:86:13-47
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:91:13-47
 	android:authorities
 		INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:84:13-60
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:89:13-60
 	android:exported
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:85:13-37
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:90:13-37
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:83:13-62
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:88:13-62
 manifest
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:2:1-92:12
-INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:2:1-92:12
-INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:2:1-92:12
-INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:2:1-92:12
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:2:1-97:12
+INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:2:1-97:12
+INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:2:1-97:12
+INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:2:1-97:12
 MERGED from [androidx.camera:camera-video:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\41702c12764c424748b95246992d748d\transformed\camera-video-1.3.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.camera:camera-view:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0eef2036e2c98d237eef52ff1fd789d5\transformed\camera-view-1.3.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.camera:camera-lifecycle:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\5ddb91c32de1b0d6914f88f359abb9c4\transformed\camera-lifecycle-1.3.1\AndroidManifest.xml:2:1-7:12
@@ -165,7 +165,7 @@ ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifes
 	android:name
 		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:23:22-80
 queries
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:26:5-40:15
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:26:5-45:15
 intent#action:name:android.intent.action.VIEW+data:scheme:upi
 ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:28:9-31:18
 action#android.intent.action.VIEW
@@ -177,7 +177,7 @@ ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifes
 	android:scheme
 		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:30:19-39
 	android:mimeType
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:64:23-49
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:69:23-49
 package#com.whatsapp
 ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:33:9-48
 	android:name
@@ -188,9 +188,11 @@ category#android.intent.category.BROWSABLE
 ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:37:13-74
 	android:name
 		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:37:23-71
+intent#action:name:android.intent.action.VIEW+data:scheme:otpauth
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:41:9-44:18
 application
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:42:5-91:19
-INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:42:5-91:19
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:47:5-96:19
+INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:47:5-96:19
 MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:23:5-34:19
 MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\AndroidManifest.xml:23:5-34:19
 MERGED from [androidx.camera:camera-core:1.3.1] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0a8e4daea9dcc102ec21177f1df68438\transformed\camera-core-1.3.1\AndroidManifest.xml:23:5-34:19
@@ -232,83 +234,83 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\Harsh\.gradle\c
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:49:9-35
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:54:9-35
 	android:label
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:47:9-41
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:52:9-41
 	android:fullBackupContent
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:45:9-54
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:50:9-54
 	android:roundIcon
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:48:9-54
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:53:9-54
 	tools:targetApi
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:51:9-29
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:56:9-29
 	android:icon
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:46:9-43
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:51:9-43
 	android:allowBackup
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:43:9-36
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:48:9-36
 	android:theme
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:50:9-42
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:55:9-42
 	android:dataExtractionRules
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:44:9-65
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:49:9-65
 activity#com.HrshD1eux.Scan.MainActivity
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:52:9-69:20
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:57:9-74:20
 	android:windowSoftInputMode
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:56:13-55
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:61:13-55
 	android:exported
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:54:13-36
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:59:13-36
 	android:theme
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:55:13-46
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:60:13-46
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:53:13-41
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:58:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:57:13-60:29
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:62:13-65:29
 action#android.intent.action.MAIN
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:58:17-69
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:63:17-69
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:58:25-66
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:63:25-66
 category#android.intent.category.LAUNCHER
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:59:17-77
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:64:17-77
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:59:27-74
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:64:27-74
 intent-filter#action:name:android.intent.action.SEND+category:name:android.intent.category.DEFAULT+data:mimeType:image/*
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:61:13-65:29
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:66:13-70:29
 action#android.intent.action.SEND
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:62:17-69
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:67:17-69
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:62:25-66
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:67:25-66
 category#android.intent.category.DEFAULT
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:63:17-76
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:68:17-76
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:63:27-73
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:68:27-73
 meta-data#android.app.shortcuts
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:66:13-68:53
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:71:13-73:53
 	android:resource
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:68:17-50
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:73:17-50
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:67:17-53
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:72:17-53
 service#com.HrshD1eux.Scan.ScanTileService
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:71:9-80:19
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:76:9-85:19
 	android:label
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:73:13-45
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:78:13-45
 	android:exported
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:76:13-36
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:81:13-36
 	android:permission
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:75:13-77
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:80:13-77
 	android:icon
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:74:13-51
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:79:13-51
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:72:13-44
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:77:13-44
 intent-filter#action:name:android.service.quicksettings.action.QS_TILE
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:77:13-79:29
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:82:13-84:29
 action#android.service.quicksettings.action.QS_TILE
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:78:17-87
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:83:17-87
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:78:25-84
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:83:25-84
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:87:13-89:54
+ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:92:13-94:54
 	android:resource
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:89:17-51
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:94:17-51
 	android:name
-		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:88:17-67
+		ADDED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml:93:17-67
 uses-sdk
 INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from H:\Programming\Main Projects\Android\Scan\app\src\main\AndroidManifest.xml

@@ -7,6 +7,11 @@ object ContentClassifier {
 
     fun classify(barcode: Barcode): ParsedContent {
         val rawValue = barcode.rawValue ?: return ParsedContent.Text("")
+        
+        if (rawValue.startsWith("otpauth://", ignoreCase = true)) {
+            return parseOtp(rawValue)
+        }
+
         val type = barcode.valueType
 
         return when (type) {
@@ -40,6 +45,30 @@ object ContentClassifier {
                 val email = barcode.email
                 ParsedContent.Email(email?.address ?: rawValue, email?.subject, email?.body)
             }
+            Barcode.TYPE_CONTACT_INFO -> {
+                val contact = barcode.contactInfo
+                val name = contact?.name?.formattedName ?: "Contact"
+                val phone = contact?.phones?.firstOrNull()?.number
+                val email = contact?.emails?.firstOrNull()?.address
+                val org = contact?.organization
+                ParsedContent.Contact(name, phone, email, org)
+            }
+            Barcode.TYPE_GEO -> {
+                val geo = barcode.geoPoint
+                if (geo != null) {
+                    ParsedContent.Geo(geo.lat, geo.lng, rawValue)
+                } else {
+                    ParsedContent.Text(rawValue)
+                }
+            }
+            Barcode.TYPE_SMS -> {
+                val sms = barcode.sms
+                if (sms != null) {
+                    ParsedContent.Sms(sms.phoneNumber ?: "", sms.message)
+                } else {
+                    ParsedContent.Text(rawValue)
+                }
+            }
             else -> {
                 // Fallback parsing for raw strings that ML Kit missed
                 if (rawValue.startsWith("upi://pay", ignoreCase = true)) {
@@ -52,6 +81,22 @@ object ContentClassifier {
                     ParsedContent.Text(rawValue)
                 }
             }
+        }
+    }
+
+    private fun parseOtp(uriString: String): ParsedContent {
+        return try {
+            val uri = Uri.parse(uriString)
+            val path = uri.path ?: ""
+            val label = path.substringAfterLast(":")
+                .ifEmpty { path.substringAfterLast("/") }
+                .ifEmpty { "Authenticator Code" }
+            
+            val secret = uri.getQueryParameter("secret")
+            val issuer = uri.getQueryParameter("issuer")
+            ParsedContent.Otp(label.trim(), secret, issuer, uri)
+        } catch (e: Exception) {
+            ParsedContent.Text(uriString)
         }
     }
 

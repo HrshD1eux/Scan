@@ -120,6 +120,10 @@ class MainActivity : ComponentActivity() {
                                     is ParsedContent.Product -> content.barcode
                                     is ParsedContent.UnknownBarcode -> content.rawValue
                                     is ParsedContent.Text -> content.text
+                                    is ParsedContent.Otp -> content.label
+                                    is ParsedContent.Contact -> content.name
+                                    is ParsedContent.Geo -> "${content.latitude}, ${content.longitude}"
+                                    is ParsedContent.Sms -> content.phoneNumber
                                 }
                                 val typeName = content::class.simpleName ?: "Unknown"
                                 historyDao.insert(HistoryEntity(type = typeName, primaryValue = primaryValue))

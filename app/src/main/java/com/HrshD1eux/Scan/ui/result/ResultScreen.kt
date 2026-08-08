@@ -73,6 +73,27 @@ fun ResultScreen(
                 Text("Scanned Text", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
                 ExpandableText(content.text)
             }
+            is ParsedContent.Otp -> {
+                Text("Authenticator Code", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+                Text(content.label, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
+                content.issuer?.let { Text("Issuer: $it", style = MaterialTheme.typography.bodyMedium) }
+            }
+            is ParsedContent.Contact -> {
+                Text("Contact Details", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+                Text(content.name, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
+                content.org?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+                content.phone?.let { Text("Phone: $it", style = MaterialTheme.typography.bodyMedium) }
+                content.email?.let { Text("Email: $it", style = MaterialTheme.typography.bodyMedium) }
+            }
+            is ParsedContent.Geo -> {
+                Text("Location Coordinates", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+                Text("${content.latitude}, ${content.longitude}", style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
+            }
+            is ParsedContent.Sms -> {
+                Text("SMS Message", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+                Text("To: ${content.phoneNumber}", style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
+                content.message?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+            }
         }
 
         Spacer(modifier = Modifier.height(32.dp))
