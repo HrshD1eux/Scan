@@ -20,7 +20,11 @@ fun AboutScreen(onBack: () -> Unit) {
     val scope = rememberCoroutineScope()
     var updateStatus by remember { mutableStateOf<String?>(null) }
     
-    val currentVersion = "1.0.0"
+    val currentVersion = try {
+        context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "Unknown"
+    } catch (e: Exception) {
+        "Unknown"
+    }
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.height(32.dp))
@@ -65,11 +69,10 @@ fun AboutScreen(onBack: () -> Unit) {
 
 suspend fun checkForUpdate(): String? = withContext(Dispatchers.IO) {
     try {
-        // Very rudimentary check: this assumes there's a simple text file on github with the latest version number
-        // For a production app, use the GitHub API to check latest release tag.
-        // val response = URL("https://api.github.com/repos/HrshD1eux/Scan/releases/latest").readText()
-        // Here we just return null for now to avoid crashing if the repo doesn't exist yet.
-        null 
+        val response = URL("https://api.github.com/repos/HrshD1eux/Scan/releases/latest").readText()
+        // Extract tag_name using regex since we don't want to add a JSON dependency just for this
+        val match = "\"tag_name\"\\s*:\\s*\"v?([^\"]+)\"".toRegex().find(response)
+        match?.groupValues?.get(1)
     } catch (e: Exception) {
         null
     }
