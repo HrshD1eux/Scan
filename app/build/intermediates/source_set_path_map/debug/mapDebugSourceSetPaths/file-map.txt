@@ -1,0 +1,67 @@
+com.HrshD1eux.Scan.app-room-runtime-2.6.1-0 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\046786035ceaf962398161afeb29084a\transformed\room-runtime-2.6.1\res
+com.HrshD1eux.Scan.app-lifecycle-process-2.7.0-1 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\07e286d2beb2dc2d3479d5f692bae670\transformed\lifecycle-process-2.7.0\res
+com.HrshD1eux.Scan.app-camera-core-1.3.1-2 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0a8e4daea9dcc102ec21177f1df68438\transformed\camera-core-1.3.1\res
+com.HrshD1eux.Scan.app-camera-view-1.3.1-3 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0eef2036e2c98d237eef52ff1fd789d5\transformed\camera-view-1.3.1\res
+com.HrshD1eux.Scan.app-camera-camera2-1.3.1-4 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\0fbe7b046a423dd91ac526714e6e9d31\transformed\camera-camera2-1.3.1\res
+com.HrshD1eux.Scan.app-lifecycle-viewmodel-ktx-2.7.0-5 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\1655cd0e50e4a9168fe47e8ee0322de1\transformed\lifecycle-viewmodel-ktx-2.7.0\res
+com.HrshD1eux.Scan.app-annotation-experimental-1.4.0-6 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\205a0973aea6ca2561e8b26738e2cd42\transformed\annotation-experimental-1.4.0\res
+com.HrshD1eux.Scan.app-animation-release-7 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\22e3f1fd1824f973b1a26fbad449d882\transformed\animation-release\res
+com.HrshD1eux.Scan.app-ui-text-release-8 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\23e6b5b354f20bd648fdd3246ff5265b\transformed\ui-text-release\res
+com.HrshD1eux.Scan.app-emoji2-1.3.0-9 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\27b076f3b6ac6bd7df3d67ba7ccae44b\transformed\emoji2-1.3.0\res
+com.HrshD1eux.Scan.app-fragment-1.3.6-10 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\2a7e3014bfe0ed5015270c6910b43dac\transformed\fragment-1.3.6\res
+com.HrshD1eux.Scan.app-emoji2-views-helper-1.3.0-11 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\2bc79729681df8472632ba3eba6b5f8c\transformed\emoji2-views-helper-1.3.0\res
+com.HrshD1eux.Scan.app-activity-compose-1.8.2-12 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\2d2486138552a80d3a1b86e40e8170cf\transformed\activity-compose-1.8.2\res
+com.HrshD1eux.Scan.app-ui-util-release-13 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\3435d7a9bdc284d4da6fe4305ede54a4\transformed\ui-util-release\res
+com.HrshD1eux.Scan.app-activity-ktx-1.8.2-14 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\35c0ce09b9de69422dbde8f216ec3a42\transformed\activity-ktx-1.8.2\res
+com.HrshD1eux.Scan.app-sqlite-framework-2.4.0-15 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\36d7acbf09a6c5a0d60b2a98fe890fe8\transformed\sqlite-framework-2.4.0\res
+com.HrshD1eux.Scan.app-material3-release-16 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\3ba538a29c588d4e39f1c97b8d3ebd0e\transformed\material3-release\res
+com.HrshD1eux.Scan.app-camera-video-1.3.1-17 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\41702c12764c424748b95246992d748d\transformed\camera-video-1.3.1\res
+com.HrshD1eux.Scan.app-ui-tooling-data-release-18 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\46724aa30ddb28349fb632d347dcb824\transformed\ui-tooling-data-release\res
+com.HrshD1eux.Scan.app-material-release-19 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\487e3300c3f64fdabc49972bba91c772\transformed\material-release\res
+com.HrshD1eux.Scan.app-animation-core-release-20 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\4c9024c288d7a74c1178986e637ce5b9\transformed\animation-core-release\res
+com.HrshD1eux.Scan.app-coil-base-2.5.0-21 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\5313a3f9f1560993c7e1d458be12280c\transformed\coil-base-2.5.0\res
+com.HrshD1eux.Scan.app-lifecycle-livedata-2.7.0-22 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\54ac1fa02e0e8b033db810e3b2f76815\transformed\lifecycle-livedata-2.7.0\res
+com.HrshD1eux.Scan.app-ui-release-23 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\567af527aacedcbda611793f438ded7d\transformed\ui-release\res
+com.HrshD1eux.Scan.app-ui-test-manifest-1.6.1-24 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\58bd882e0fd93e43fa34bf8d0716cee5\transformed\ui-test-manifest-1.6.1\res
+com.HrshD1eux.Scan.app-camera-lifecycle-1.3.1-25 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\5ddb91c32de1b0d6914f88f359abb9c4\transformed\camera-lifecycle-1.3.1\res
+com.HrshD1eux.Scan.app-lifecycle-runtime-2.7.0-26 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\64b95c1a0246e0f7a7529722833547cf\transformed\lifecycle-runtime-2.7.0\res
+com.HrshD1eux.Scan.app-runtime-release-27 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\7a2959de8963b311079c34618dbea887\transformed\runtime-release\res
+com.HrshD1eux.Scan.app-lifecycle-livedata-core-ktx-2.7.0-28 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\7b19467b2addac51230c174865185e60\transformed\lifecycle-livedata-core-ktx-2.7.0\res
+com.HrshD1eux.Scan.app-appcompat-1.6.1-29 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\7fabf374cf583bcbe9b1bb966b8fa1fa\transformed\appcompat-1.6.1\res
+com.HrshD1eux.Scan.app-ui-unit-release-30 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\852156c8532e47a551e5655a60768cec\transformed\ui-unit-release\res
+com.HrshD1eux.Scan.app-lifecycle-livedata-core-2.7.0-31 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\8e0360d30be700ebe121acceb36174ed\transformed\lifecycle-livedata-core-2.7.0\res
+com.HrshD1eux.Scan.app-lifecycle-runtime-ktx-2.7.0-32 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\908f0ae99e33a44e2d6c4ae1ce77faf5\transformed\lifecycle-runtime-ktx-2.7.0\res
+com.HrshD1eux.Scan.app-ui-tooling-release-33 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\938bcdbd87ea1c41c939307085edb480\transformed\ui-tooling-release\res
+com.HrshD1eux.Scan.app-lifecycle-viewmodel-2.7.0-34 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\95b9d566859812898625cd7413dbc997\transformed\lifecycle-viewmodel-2.7.0\res
+com.HrshD1eux.Scan.app-foundation-layout-release-35 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\969191d07aa4913074fb5b3322cc1aa6\transformed\foundation-layout-release\res
+com.HrshD1eux.Scan.app-ui-tooling-preview-release-36 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\9adfbbf72859263a27039f2b4db80fd5\transformed\ui-tooling-preview-release\res
+com.HrshD1eux.Scan.app-appcompat-resources-1.6.1-37 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\9c69ed8774fd8d147bdd54f7c615654e\transformed\appcompat-resources-1.6.1\res
+com.HrshD1eux.Scan.app-lifecycle-viewmodel-savedstate-2.7.0-38 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\9f788d747738019375acbaccdefea6fc\transformed\lifecycle-viewmodel-savedstate-2.7.0\res
+com.HrshD1eux.Scan.app-material-icons-core-release-39 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\a28e538014985f0df08ea969b6e684ff\transformed\material-icons-core-release\res
+com.HrshD1eux.Scan.app-ui-geometry-release-40 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\a7cdc9a00a03ebc089f65ee512368f3c\transformed\ui-geometry-release\res
+com.HrshD1eux.Scan.app-savedstate-1.2.1-41 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ac52b760ed3ab950a4f4210e11a2f2f6\transformed\savedstate-1.2.1\res
+com.HrshD1eux.Scan.app-datastore-1.0.0-42 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\b505185f3e36578aca0e0dd0b813b086\transformed\datastore-1.0.0\res
+com.HrshD1eux.Scan.app-customview-poolingcontainer-1.0.0-43 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\bf760fd3fafef2ae5f266825179929ec\transformed\customview-poolingcontainer-1.0.0\res
+com.HrshD1eux.Scan.app-core-ktx-1.12.0-44 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\c161f0254e4061613f5c9a7dfc6ccf58\transformed\core-ktx-1.12.0\res
+com.HrshD1eux.Scan.app-activity-1.8.2-45 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\c4090661b7f4859a46478d7812a1c263\transformed\activity-1.8.2\res
+com.HrshD1eux.Scan.app-core-runtime-2.2.0-46 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\d7981675063c8e6928a74555c9636e77\transformed\core-runtime-2.2.0\res
+com.HrshD1eux.Scan.app-material-icons-extended-release-47 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\da01505b80cb61665fa35e2fa49ba401\transformed\material-icons-extended-release\res
+com.HrshD1eux.Scan.app-profileinstaller-1.3.1-48 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\dd717e473fa11d78452403409d8fd8bb\transformed\profileinstaller-1.3.1\res
+com.HrshD1eux.Scan.app-play-services-base-18.1.0-49 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\df7a099b610d62389c6368b0e3a381ad\transformed\play-services-base-18.1.0\res
+com.HrshD1eux.Scan.app-room-ktx-2.6.1-50 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e0de7c4d973a0b54fffca811e46879c0\transformed\room-ktx-2.6.1\res
+com.HrshD1eux.Scan.app-datastore-preferences-1.0.0-51 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e1eb3b5e723cdfb8d474d8851e701933\transformed\datastore-preferences-1.0.0\res
+com.HrshD1eux.Scan.app-play-services-basement-18.1.0-52 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e4c22113321140323d2c48d4bc970d6b\transformed\play-services-basement-18.1.0\res
+com.HrshD1eux.Scan.app-sqlite-2.4.0-53 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e81130a75135f1cb3c47a01b47dc56af\transformed\sqlite-2.4.0\res
+com.HrshD1eux.Scan.app-foundation-release-54 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\e95e2b5e45e203dc307f7ca904ac88ce\transformed\foundation-release\res
+com.HrshD1eux.Scan.app-material-ripple-release-55 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\f00b55e759a52ad71e3e19bf72c8231d\transformed\material-ripple-release\res
+com.HrshD1eux.Scan.app-ui-graphics-release-56 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\f2c2ff6da79ba78553199645ffa408b4\transformed\ui-graphics-release\res
+com.HrshD1eux.Scan.app-savedstate-ktx-1.2.1-57 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\f5aa002f4a9add35480118b54a9a59af\transformed\savedstate-ktx-1.2.1\res
+com.HrshD1eux.Scan.app-runtime-saveable-release-58 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\faca3793219136616b5afe4c4fc732b1\transformed\runtime-saveable-release\res
+com.HrshD1eux.Scan.app-core-1.12.0-59 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\fd6d8a01871fcc982ac3a35614fd1001\transformed\core-1.12.0\res
+com.HrshD1eux.Scan.app-startup-runtime-1.1.1-60 C:\Users\Harsh\.gradle\caches\9.0.0\transforms\ff7ae3e142f3547fca300fc8ad9ae134\transformed\startup-runtime-1.1.1\res
+com.HrshD1eux.Scan.app-resValues-61 H:\Programming\Main Projects\Android\Scan\app\build\generated\res\resValues\debug
+com.HrshD1eux.Scan.app-packageDebugResources-62 H:\Programming\Main Projects\Android\Scan\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.HrshD1eux.Scan.app-packageDebugResources-63 H:\Programming\Main Projects\Android\Scan\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.HrshD1eux.Scan.app-debug-64 H:\Programming\Main Projects\Android\Scan\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.HrshD1eux.Scan.app-debug-65 H:\Programming\Main Projects\Android\Scan\app\src\debug\res
+com.HrshD1eux.Scan.app-main-66 H:\Programming\Main Projects\Android\Scan\app\src\main\res
