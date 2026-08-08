@@ -17,6 +17,8 @@ fun SettingsScreen(settingsManager: SettingsManager, onBack: () -> Unit, onAbout
     val haptic by settingsManager.hapticFeedbackFlow.collectAsState(initial = true)
     val sound by settingsManager.soundFeedbackFlow.collectAsState(initial = true)
     val history by settingsManager.saveHistoryFlow.collectAsState(initial = true)
+    val autoOpenUrls by settingsManager.autoOpenUrlsFlow.collectAsState(initial = false)
+    val batchScanMode by settingsManager.batchScanModeFlow.collectAsState(initial = false)
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text("Settings", style = MaterialTheme.typography.headlineMedium)
@@ -33,6 +35,12 @@ fun SettingsScreen(settingsManager: SettingsManager, onBack: () -> Unit, onAbout
         }
         SettingSwitch("Save Scan History", history) {
             scope.launch { settingsManager.setSaveHistory(it) }
+        }
+        SettingSwitch("Batch Scan Mode (Continuous)", batchScanMode) {
+            scope.launch { settingsManager.setBatchScanMode(it) }
+        }
+        SettingSwitch("Auto-Open Scanned URLs", autoOpenUrls) {
+            scope.launch { settingsManager.setAutoOpenUrls(it) }
         }
         
         

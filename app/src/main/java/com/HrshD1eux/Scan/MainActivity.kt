@@ -1,6 +1,7 @@
 package com.HrshD1eux.Scan
 
 import android.os.Bundle
+import android.content.Intent
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -64,6 +65,8 @@ class MainActivity : ComponentActivity() {
                     
                     val hapticEnabled by settingsManager.hapticFeedbackFlow.collectAsState(initial = true)
                     val soundEnabled by settingsManager.soundFeedbackFlow.collectAsState(initial = true)
+                    val autoOpenUrls by settingsManager.autoOpenUrlsFlow.collectAsState(initial = false)
+                    val batchScanMode by settingsManager.batchScanModeFlow.collectAsState(initial = false)
 
                     // Extracted processing function
                     fun processSingleBarcode(barcode: Barcode) {
@@ -90,7 +93,6 @@ class MainActivity : ComponentActivity() {
                         }
 
                         val content = ContentClassifier.classify(barcode)
-                        scannedContent = content
                         detectedBarcodes = emptyList() // clear list once selected
                         
                         // Auto-copy for text or unknown formats
@@ -129,6 +131,40 @@ class MainActivity : ComponentActivity() {
                                 historyDao.insert(HistoryEntity(type = typeName, primaryValue = primaryValue))
                             }
                         }
+
+                        if (batchScanMode) {
+                            val displayValue = when(content) {
+                                is ParsedContent.Url -> content.url
+                                is ParsedContent.Upi -> content.upiId
+                                is ParsedContent.Wifi -> content.ssid
+                                is ParsedContent.Phone -> content.number
+                                is ParsedContent.Email -> content.address
+                                is ParsedContent.Product -> content.barcode
+                                is ParsedContent.UnknownBarcode -> content.rawValue
+                                is ParsedContent.Text -> content.text.take(20) + if(content.text.length > 20) "..." else ""
+                                is ParsedContent.Otp -> content.label
+                                is ParsedContent.Contact -> content.name
+                                is ParsedContent.Geo -> "${content.latitude}, ${content.longitude}"
+                                is ParsedContent.Sms -> content.phoneNumber
+                            }
+                            android.widget.Toast.makeText(context, "Scanned: $displayValue", android.widget.Toast.LENGTH_SHORT).show()
+                            return
+                        }
+
+                        if (autoOpenUrls && content is ParsedContent.Url) {
+                            val uri = android.net.Uri.parse(content.url)
+                            try {
+                                androidx.browser.customtabs.CustomTabsIntent.Builder().build().launchUrl(context, uri)
+                            } catch (e: Exception) {
+                                val intent = Intent(Intent.ACTION_VIEW, uri).apply {
+                                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                }
+                                context.startActivity(intent)
+                            }
+                            return
+                        }
+
+                        scannedContent = content
                     }
 
                     val galleryLauncher = rememberLauncherForActivityResult(

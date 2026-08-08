@@ -19,6 +19,10 @@ import com.HrshD1eux.Scan.history.HistoryEntity
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import android.content.Context
+import android.content.Intent
+import androidx.core.content.FileProvider
+import java.io.File
 
 @Composable
 fun HistoryScreen(onBack: () -> Unit) {
@@ -34,8 +38,16 @@ fun HistoryScreen(onBack: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text("Scan History", style = MaterialTheme.typography.headlineMedium)
-            TextButton(onClick = { scope.launch { historyDao.clearHistory() } }) {
-                Text("Clear All")
+            Row {
+                TextButton(
+                    onClick = { exportHistoryToCsv(context, historyItems) },
+                    enabled = historyItems.isNotEmpty()
+                ) {
+                    Text("Export")
+                }
+                TextButton(onClick = { scope.launch { historyDao.clearHistory() } }) {
+                    Text("Clear All")
+                }
             }
         }
         
@@ -82,5 +94,37 @@ fun HistoryItemView(item: HistoryEntity, onDelete: () -> Unit) {
                 Icon(Icons.Default.Delete, contentDescription = "Delete")
             }
         }
+    }
+}
+
+fun exportHistoryToCsv(context: Context, items: List<HistoryEntity>) {
+    try {
+        val csvString = StringBuilder()
+        csvString.append("ID,Type,Scanned Value,Timestamp\n")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        
+        items.forEach { item ->
+            val cleanValue = item.primaryValue.replace("\"", "\"\"") // Escape quotes
+            val dateString = dateFormat.format(Date(item.timestamp))
+            csvString.append("${item.id},${item.type},\"${cleanValue}\",${dateString}\n")
+        }
+        
+        val file = File(context.cacheDir, "scan_history.csv")
+        file.writeText(csvString.toString())
+        
+        val authority = "${context.packageName}.provider"
+        val uri = FileProvider.getUriForFile(context, authority, file)
+        
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/csv"
+            putExtra(Intent.EXTRA_STREAM, uri)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        
+        val chooser = Intent.createChooser(intent, "Share Scan History")
+        chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(chooser)
+    } catch (e: Exception) {
+        android.widget.Toast.makeText(context, "Export failed: ${e.localizedMessage}", android.widget.Toast.LENGTH_SHORT).show()
     }
 }
