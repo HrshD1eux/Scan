@@ -37,14 +37,20 @@ class BarcodeAnalyzer(
                 .addOnSuccessListener { barcodes ->
                     if (barcodes.isNotEmpty()) {
                         onBarcodeDetected(barcodes)
+                        // Hold lock to debounce multiple quick success detections
+                        CoroutineScope(Dispatchers.Main).launch {
+                            delay(throttleDelay)
+                            isProcessing = false
+                        }
+                    } else {
+                        isProcessing = false
                     }
+                }
+                .addOnFailureListener {
+                    isProcessing = false
                 }
                 .addOnCompleteListener {
                     imageProxy.close()
-                    CoroutineScope(Dispatchers.Main).launch {
-                        delay(throttleDelay)
-                        isProcessing = false
-                    }
                 }
         } else {
             imageProxy.close()
