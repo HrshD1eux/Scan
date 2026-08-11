@@ -203,7 +203,7 @@ class ActionResolver(private val context: Context) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         } catch (e: Exception) {
-            // Handle activity not found
+            android.widget.Toast.makeText(context, "No app found to handle this action", android.widget.Toast.LENGTH_SHORT).show()
         }
     }
 }
