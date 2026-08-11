@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.net.Uri
 import android.provider.Settings
 import androidx.compose.material.icons.Icons
@@ -51,11 +52,35 @@ class ActionResolver(private val context: Context) {
             is ParsedContent.Wifi -> {
                 actions.add(
                     Action("Connect to Wi-Fi", Icons.Default.Wifi, isPrimary = true) {
-                        // Wi-Fi connection logic using Android APIs goes here.
-                        // For API >= 29, use WifiNetworkSpecifier.
-                        // Opening settings as fallback for now
-                        val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
-                        launchIntent(intent)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            try {
+                                val suggestionBuilder = android.net.wifi.WifiNetworkSuggestion.Builder()
+                                    .setSsid(content.ssid)
+                                
+                                if (content.password != null) {
+                                    if (content.securityType.contains("WPA", ignoreCase = true)) {
+                                        suggestionBuilder.setWpa2Passphrase(content.password)
+                                    } else if (content.securityType.contains("WPA3", ignoreCase = true)) {
+                                        suggestionBuilder.setWpa3Passphrase(content.password)
+                                    }
+                                }
+                                
+                                val suggestion = suggestionBuilder.build()
+                                val list = arrayListOf(suggestion)
+                                val bundle = android.os.Bundle().apply {
+                                    putParcelableArrayList("android.provider.extra.WIFI_NETWORK_LIST", list)
+                                }
+                                val intent = Intent("android.settings.WIFI_ADD_NETWORKS").apply {
+                                    putExtras(bundle)
+                                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                }
+                                context.startActivity(intent)
+                            } catch (e: Exception) {
+                                launchIntent(Intent(Settings.ACTION_WIFI_SETTINGS))
+                            }
+                        } else {
+                            launchIntent(Intent(Settings.ACTION_WIFI_SETTINGS))
+                        }
                     }
                 )
                 content.password?.let {

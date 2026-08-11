@@ -27,6 +27,8 @@ import com.google.mlkit.vision.barcode.common.Barcode
 import androidx.compose.foundation.Canvas
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.animation.core.*
+import androidx.compose.ui.graphics.graphicsLayer
 
 @androidx.camera.core.ExperimentalGetImage
 @Composable
@@ -38,6 +40,8 @@ fun ScannerScreen(
     val context = LocalContext.current
     val settingsManager = remember { SettingsManager(context) }
     val autoFlashlightEnabled by settingsManager.autoFlashlightFlow.collectAsState(initial = true)
+    val torchSuggestionEnabled by settingsManager.torchSuggestionFlow.collectAsState(initial = true)
+    var isLowLightDetected by remember { mutableStateOf(false) }
 
     var hasCameraPermission by remember {
         mutableStateOf(
@@ -78,16 +82,20 @@ fun ScannerScreen(
         }
     }
 
-    DisposableEffect(autoFlashlightEnabled) {
-        if (autoFlashlightEnabled) {
+    DisposableEffect(autoFlashlightEnabled, torchSuggestionEnabled) {
+        if (autoFlashlightEnabled || torchSuggestionEnabled) {
             lightSensorManager.startListening { isLowLight ->
-                if (!userToggledFlashlight) {
+                isLowLightDetected = isLowLight
+                if (autoFlashlightEnabled && !userToggledFlashlight) {
                     isFlashlightOn = isLowLight
                 }
             }
         } else {
             lightSensorManager.stopListening()
-            if (!userToggledFlashlight) isFlashlightOn = false
+            isLowLightDetected = false
+            if (autoFlashlightEnabled && !userToggledFlashlight) {
+                isFlashlightOn = false
+            }
         }
         onDispose {
             lightSensorManager.stopListening()
@@ -105,6 +113,41 @@ fun ScannerScreen(
                 isFlashlightOn = isFlashlightOn,
                 modifier = Modifier.fillMaxSize()
             )
+
+            if (torchSuggestionEnabled && isLowLightDetected && !isFlashlightOn) {
+                val infiniteTransition = rememberInfiniteTransition(label = "pulse")
+                val scale by infiniteTransition.animateFloat(
+                    initialValue = 1.0f,
+                    targetValue = 1.15f,
+                    animationSpec = infiniteRepeatable(
+                        animation = tween(1000, easing = LinearEasing),
+                        repeatMode = RepeatMode.Reverse
+                    ),
+                    label = "scale"
+                )
+                
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = 32.dp, end = 24.dp),
+                    contentAlignment = Alignment.TopEnd
+                ) {
+                    FloatingActionButton(
+                        onClick = {
+                            isFlashlightOn = true
+                            userToggledFlashlight = true
+                        },
+                        modifier = Modifier
+                            .graphicsLayer(scaleX = scale, scaleY = scale)
+                            .size(56.dp),
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                        shape = androidx.compose.foundation.shape.CircleShape
+                    ) {
+                        Icon(Icons.Default.FlashlightOn, contentDescription = "Turn on Flashlight")
+                    }
+                }
+            }
 
             // Viewfinder reticle overlay
             Box(

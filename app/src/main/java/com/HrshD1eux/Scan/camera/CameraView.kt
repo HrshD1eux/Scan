@@ -124,7 +124,9 @@ fun CameraView(
                         camera?.let {
                             val meteringPointFactory = SurfaceOrientedMeteringPointFactory(size.width.toFloat(), size.height.toFloat())
                             val meteringPoint = meteringPointFactory.createPoint(offset.x, offset.y)
-                            val action = FocusMeteringAction.Builder(meteringPoint).build()
+                            val action = FocusMeteringAction.Builder(meteringPoint)
+                                .setAutoCancelDuration(3, java.util.concurrent.TimeUnit.SECONDS)
+                                .build()
                             it.cameraControl.startFocusAndMetering(action)
                         }
                     }

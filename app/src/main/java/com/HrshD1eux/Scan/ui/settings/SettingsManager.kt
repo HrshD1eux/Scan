@@ -18,6 +18,7 @@ class SettingsManager(private val context: Context) {
         val SAVE_HISTORY = booleanPreferencesKey("save_history")
         val AUTO_OPEN_URLS = booleanPreferencesKey("auto_open_urls")
         val BATCH_SCAN_MODE = booleanPreferencesKey("batch_scan_mode")
+        val TORCH_SUGGESTION = booleanPreferencesKey("torch_suggestion")
     }
 
     val autoFlashlightFlow: Flow<Boolean> = context.dataStore.data.map { it[AUTO_FLASHLIGHT] ?: true }
@@ -26,6 +27,7 @@ class SettingsManager(private val context: Context) {
     val saveHistoryFlow: Flow<Boolean> = context.dataStore.data.map { it[SAVE_HISTORY] ?: true }
     val autoOpenUrlsFlow: Flow<Boolean> = context.dataStore.data.map { it[AUTO_OPEN_URLS] ?: false }
     val batchScanModeFlow: Flow<Boolean> = context.dataStore.data.map { it[BATCH_SCAN_MODE] ?: false }
+    val torchSuggestionFlow: Flow<Boolean> = context.dataStore.data.map { it[TORCH_SUGGESTION] ?: true }
 
     suspend fun setAutoFlashlight(enabled: Boolean) {
         context.dataStore.edit { it[AUTO_FLASHLIGHT] = enabled }
@@ -49,5 +51,9 @@ class SettingsManager(private val context: Context) {
 
     suspend fun setBatchScanMode(enabled: Boolean) {
         context.dataStore.edit { it[BATCH_SCAN_MODE] = enabled }
+    }
+
+    suspend fun setTorchSuggestion(enabled: Boolean) {
+        context.dataStore.edit { it[TORCH_SUGGESTION] = enabled }
     }
 }

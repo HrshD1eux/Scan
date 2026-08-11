@@ -19,6 +19,7 @@ fun SettingsScreen(settingsManager: SettingsManager, onBack: () -> Unit, onAbout
     val history by settingsManager.saveHistoryFlow.collectAsState(initial = true)
     val autoOpenUrls by settingsManager.autoOpenUrlsFlow.collectAsState(initial = false)
     val batchScanMode by settingsManager.batchScanModeFlow.collectAsState(initial = false)
+    val torchSuggestion by settingsManager.torchSuggestionFlow.collectAsState(initial = true)
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text("Settings", style = MaterialTheme.typography.headlineMedium)
@@ -41,6 +42,9 @@ fun SettingsScreen(settingsManager: SettingsManager, onBack: () -> Unit, onAbout
         }
         SettingSwitch("Auto-Open Scanned URLs", autoOpenUrls) {
             scope.launch { settingsManager.setAutoOpenUrls(it) }
+        }
+        SettingSwitch("Suggest Flashlight in Low Light", torchSuggestion) {
+            scope.launch { settingsManager.setTorchSuggestion(it) }
         }
         
         
