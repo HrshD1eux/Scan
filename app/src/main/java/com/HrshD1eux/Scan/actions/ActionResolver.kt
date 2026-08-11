@@ -17,8 +17,8 @@ import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Wifi
 import androidx.compose.material.icons.filled.VpnKey
 import androidx.compose.material.icons.filled.Contacts
+import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.Message
 import com.HrshD1eux.Scan.parser.ParsedContent
 
 class ActionResolver(private val context: Context) {
@@ -165,7 +165,7 @@ class ActionResolver(private val context: Context) {
             }
             is ParsedContent.Sms -> {
                 actions.add(
-                    Action("Send SMS", Icons.Default.Message, isPrimary = true) {
+                    Action("Send SMS", Icons.AutoMirrored.Filled.Message, isPrimary = true) {
                         val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:${content.phoneNumber}")).apply {
                             putExtra("sms_body", content.message)
                         }

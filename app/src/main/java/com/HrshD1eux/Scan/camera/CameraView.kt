@@ -35,7 +35,6 @@ fun CameraView(
     isFlashlightOn: Boolean = false,
     modifier: Modifier = Modifier
 ) {
-    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     
     var previewUseCase by remember { mutableStateOf<Preview?>(null) }
