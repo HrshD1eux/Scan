@@ -6,14 +6,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.clickable
+import androidx.compose.material.icons.filled.ContentCopy
+import android.content.ClipboardManager
+import android.content.ClipData
 import com.HrshD1eux.Scan.history.HistoryDatabase
 import com.HrshD1eux.Scan.history.HistoryEntity
 import kotlinx.coroutines.launch
@@ -30,6 +31,9 @@ fun HistoryScreen(onBack: () -> Unit) {
     val historyDao = HistoryDatabase.getDatabase(context).historyDao()
     val historyItems by historyDao.getAllHistory().collectAsState(initial = emptyList())
     val scope = rememberCoroutineScope()
+
+    var editingItem by remember { mutableStateOf<HistoryEntity?>(null) }
+    var noteText by remember { mutableStateOf("") }
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Row(
@@ -60,11 +64,49 @@ fun HistoryScreen(onBack: () -> Unit) {
         } else {
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(historyItems) { item ->
-                    HistoryItemView(item) {
-                        scope.launch { historyDao.deleteById(item.id) }
-                    }
+                    HistoryItemView(
+                        item = item,
+                        onClick = {
+                            editingItem = item
+                            noteText = item.note ?: ""
+                        },
+                        onDelete = {
+                            scope.launch { historyDao.deleteById(item.id) }
+                        }
+                    )
                 }
             }
+        }
+
+        if (editingItem != null) {
+            AlertDialog(
+                onDismissRequest = { editingItem = null },
+                title = { Text("Add Tag / Note") },
+                text = {
+                    OutlinedTextField(
+                        value = noteText,
+                        onValueChange = { noteText = it },
+                        label = { Text("Note (e.g. Wi-Fi at office)") },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                },
+                confirmButton = {
+                    Button(onClick = {
+                        scope.launch {
+                            historyDao.updateNote(editingItem!!.id, noteText.trim().ifEmpty { null })
+                            editingItem = null
+                        }
+                    }) {
+                        Text("Save")
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { editingItem = null }) {
+                        Text("Cancel")
+                    }
+                }
+            )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -75,11 +117,12 @@ fun HistoryScreen(onBack: () -> Unit) {
 }
 
 @Composable
-fun HistoryItemView(item: HistoryEntity, onDelete: () -> Unit) {
+fun HistoryItemView(item: HistoryEntity, onClick: () -> Unit, onDelete: () -> Unit) {
+    val context = LocalContext.current
     val dateFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
     val dateString = dateFormat.format(Date(item.timestamp))
 
-    Card(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+    Card(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp).clickable(onClick = onClick)) {
         Row(
             modifier = Modifier.padding(16.dp).fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -87,11 +130,26 @@ fun HistoryItemView(item: HistoryEntity, onDelete: () -> Unit) {
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(item.type, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
-                Text(item.primaryValue, style = MaterialTheme.typography.bodyLarge)
+                if (!item.note.isNullOrBlank()) {
+                    Text(item.note, style = MaterialTheme.typography.titleMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                    Text(item.primaryValue, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                } else {
+                    Text(item.primaryValue, style = MaterialTheme.typography.bodyLarge)
+                }
                 Text(dateString, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
-            IconButton(onClick = onDelete) {
-                Icon(Icons.Default.Delete, contentDescription = "Delete")
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = {
+                    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("Copied Text", item.primaryValue)
+                    clipboard.setPrimaryClip(clip)
+                    android.widget.Toast.makeText(context, "Copied to clipboard", android.widget.Toast.LENGTH_SHORT).show()
+                }) {
+                    Icon(Icons.Default.ContentCopy, contentDescription = "Copy")
+                }
+                IconButton(onClick = onDelete) {
+                    Icon(Icons.Default.Delete, contentDescription = "Delete")
+                }
             }
         }
     }

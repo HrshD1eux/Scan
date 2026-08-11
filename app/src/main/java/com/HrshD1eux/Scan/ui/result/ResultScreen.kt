@@ -47,6 +47,25 @@ fun ResultScreen(
             is ParsedContent.Url -> {
                 Text("Website", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
                 Text(content.url, style = MaterialTheme.typography.bodyLarge)
+                if (!content.isSecure) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Surface(
+                        color = MaterialTheme.colorScheme.errorContainer,
+                        contentColor = MaterialTheme.colorScheme.onErrorContainer,
+                        shape = MaterialTheme.shapes.small
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "Warning: Insecure Link (HTTP)",
+                                style = MaterialTheme.typography.labelLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
             }
             is ParsedContent.Wifi -> {
                 Text("Wi-Fi Network", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)

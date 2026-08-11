@@ -36,13 +36,15 @@ public final class HistoryDao_Impl implements HistoryDao {
 
   private final SharedSQLiteStatement __preparedStmtOfClearHistory;
 
+  private final SharedSQLiteStatement __preparedStmtOfUpdateNote;
+
   public HistoryDao_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
     this.__insertionAdapterOfHistoryEntity = new EntityInsertionAdapter<HistoryEntity>(__db) {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `history_table` (`id`,`type`,`primaryValue`,`timestamp`) VALUES (nullif(?, 0),?,?,?)";
+        return "INSERT OR REPLACE INTO `history_table` (`id`,`type`,`primaryValue`,`timestamp`,`note`) VALUES (nullif(?, 0),?,?,?,?)";
       }
 
       @Override
@@ -52,6 +54,11 @@ public final class HistoryDao_Impl implements HistoryDao {
         statement.bindString(2, entity.getType());
         statement.bindString(3, entity.getPrimaryValue());
         statement.bindLong(4, entity.getTimestamp());
+        if (entity.getNote() == null) {
+          statement.bindNull(5);
+        } else {
+          statement.bindString(5, entity.getNote());
+        }
       }
     };
     this.__preparedStmtOfDeleteById = new SharedSQLiteStatement(__db) {
@@ -67,6 +74,14 @@ public final class HistoryDao_Impl implements HistoryDao {
       @NonNull
       public String createQuery() {
         final String _query = "DELETE FROM history_table";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfUpdateNote = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "UPDATE history_table SET note = ? WHERE id = ?";
         return _query;
       }
     };
@@ -140,6 +155,38 @@ public final class HistoryDao_Impl implements HistoryDao {
   }
 
   @Override
+  public Object updateNote(final int id, final String note,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final SupportSQLiteStatement _stmt = __preparedStmtOfUpdateNote.acquire();
+        int _argIndex = 1;
+        if (note == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, note);
+        }
+        _argIndex = 2;
+        _stmt.bindLong(_argIndex, id);
+        try {
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
+        } finally {
+          __preparedStmtOfUpdateNote.release(_stmt);
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
   public Flow<List<HistoryEntity>> getAllHistory() {
     final String _sql = "SELECT * FROM history_table ORDER BY timestamp DESC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
@@ -153,6 +200,7 @@ public final class HistoryDao_Impl implements HistoryDao {
           final int _cursorIndexOfType = CursorUtil.getColumnIndexOrThrow(_cursor, "type");
           final int _cursorIndexOfPrimaryValue = CursorUtil.getColumnIndexOrThrow(_cursor, "primaryValue");
           final int _cursorIndexOfTimestamp = CursorUtil.getColumnIndexOrThrow(_cursor, "timestamp");
+          final int _cursorIndexOfNote = CursorUtil.getColumnIndexOrThrow(_cursor, "note");
           final List<HistoryEntity> _result = new ArrayList<HistoryEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
             final HistoryEntity _item;
@@ -164,7 +212,13 @@ public final class HistoryDao_Impl implements HistoryDao {
             _tmpPrimaryValue = _cursor.getString(_cursorIndexOfPrimaryValue);
             final long _tmpTimestamp;
             _tmpTimestamp = _cursor.getLong(_cursorIndexOfTimestamp);
-            _item = new HistoryEntity(_tmpId,_tmpType,_tmpPrimaryValue,_tmpTimestamp);
+            final String _tmpNote;
+            if (_cursor.isNull(_cursorIndexOfNote)) {
+              _tmpNote = null;
+            } else {
+              _tmpNote = _cursor.getString(_cursorIndexOfNote);
+            }
+            _item = new HistoryEntity(_tmpId,_tmpType,_tmpPrimaryValue,_tmpTimestamp,_tmpNote);
             _result.add(_item);
           }
           return _result;
