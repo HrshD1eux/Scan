@@ -19,6 +19,8 @@ class SettingsManager(private val context: Context) {
         val AUTO_OPEN_URLS = booleanPreferencesKey("auto_open_urls")
         val BATCH_SCAN_MODE = booleanPreferencesKey("batch_scan_mode")
         val TORCH_SUGGESTION = booleanPreferencesKey("torch_suggestion")
+        val AUTO_COPY = booleanPreferencesKey("auto_copy")
+        val DYNAMIC_COLORS = booleanPreferencesKey("dynamic_colors")
     }
 
     val autoFlashlightFlow: Flow<Boolean> = context.dataStore.data.map { it[AUTO_FLASHLIGHT] ?: true }
@@ -28,6 +30,8 @@ class SettingsManager(private val context: Context) {
     val autoOpenUrlsFlow: Flow<Boolean> = context.dataStore.data.map { it[AUTO_OPEN_URLS] ?: false }
     val batchScanModeFlow: Flow<Boolean> = context.dataStore.data.map { it[BATCH_SCAN_MODE] ?: false }
     val torchSuggestionFlow: Flow<Boolean> = context.dataStore.data.map { it[TORCH_SUGGESTION] ?: true }
+    val autoCopyFlow: Flow<Boolean> = context.dataStore.data.map { it[AUTO_COPY] ?: false }
+    val dynamicColorsFlow: Flow<Boolean> = context.dataStore.data.map { it[DYNAMIC_COLORS] ?: true }
 
     suspend fun setAutoFlashlight(enabled: Boolean) {
         context.dataStore.edit { it[AUTO_FLASHLIGHT] = enabled }
@@ -55,5 +59,13 @@ class SettingsManager(private val context: Context) {
 
     suspend fun setTorchSuggestion(enabled: Boolean) {
         context.dataStore.edit { it[TORCH_SUGGESTION] = enabled }
+    }
+
+    suspend fun setAutoCopy(enabled: Boolean) {
+        context.dataStore.edit { it[AUTO_COPY] = enabled }
+    }
+
+    suspend fun setDynamicColors(enabled: Boolean) {
+        context.dataStore.edit { it[DYNAMIC_COLORS] = enabled }
     }
 }

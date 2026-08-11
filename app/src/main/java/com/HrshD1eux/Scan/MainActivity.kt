@@ -45,28 +45,41 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    private val activityIntent = mutableStateOf<Intent?>(null)
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        activityIntent.value = intent
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activityIntent.value = intent
         setContent {
-            ScanTheme {
+            val context = LocalContext.current
+            val settingsManager = remember { SettingsManager(context) }
+            val dynamicColorsEnabled by settingsManager.dynamicColorsFlow.collectAsState(initial = true)
+
+            ScanTheme(dynamicColor = dynamicColorsEnabled) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val context = LocalContext.current
+                    val currentIntent by activityIntent
                     var scannedContent by remember { mutableStateOf<ParsedContent?>(null) }
                     var detectedBarcodes by remember { mutableStateOf<List<Barcode>>(emptyList()) }
                     var currentScreen by remember { mutableStateOf("scanner") } // "scanner", "settings", "about", "history"
                     
                     val actionResolver = remember { ActionResolver(context) }
                     val historyDao = remember { HistoryDatabase.getDatabase(context).historyDao() }
-                    val settingsManager = remember { SettingsManager(context) }
                     val duplicateDetector = remember { DuplicateDetector() }
                     
                     val hapticEnabled by settingsManager.hapticFeedbackFlow.collectAsState(initial = true)
                     val soundEnabled by settingsManager.soundFeedbackFlow.collectAsState(initial = true)
                     val autoOpenUrls by settingsManager.autoOpenUrlsFlow.collectAsState(initial = false)
                     val batchScanMode by settingsManager.batchScanModeFlow.collectAsState(initial = false)
+                    val autoCopyEnabled by settingsManager.autoCopyFlow.collectAsState(initial = false)
 
                     // Extracted processing function
                     fun processSingleBarcode(barcode: Barcode) {
@@ -95,18 +108,15 @@ class MainActivity : ComponentActivity() {
                         val content = ContentClassifier.classify(barcode)
                         detectedBarcodes = emptyList() // clear list once selected
                         
-                        // Auto-copy for text or unknown formats
-                        if (content is ParsedContent.Text || content is ParsedContent.UnknownBarcode || content is ParsedContent.Product) {
-                            val textToCopy = when(content) {
-                                is ParsedContent.Text -> content.text
-                                is ParsedContent.UnknownBarcode -> content.rawValue
-                                is ParsedContent.Product -> content.barcode
-                                else -> ""
+                        // Auto-copy if enabled
+                        if (autoCopyEnabled) {
+                            val textToCopy = barcode.rawValue ?: ""
+                            if (textToCopy.isNotEmpty()) {
+                                val clipboardManager = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                                val clip = android.content.ClipData.newPlainText("Scanned Code", textToCopy)
+                                clipboardManager.setPrimaryClip(clip)
+                                android.widget.Toast.makeText(context, "Auto-copied to clipboard", android.widget.Toast.LENGTH_SHORT).show()
                             }
-                            val clipboardManager = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-                            val clip = android.content.ClipData.newPlainText("Scanned Code", textToCopy)
-                            clipboardManager.setPrimaryClip(clip)
-                            android.widget.Toast.makeText(context, "Copied to clipboard", android.widget.Toast.LENGTH_SHORT).show()
                         }
 
                         // Save history if enabled
@@ -183,10 +193,11 @@ class MainActivity : ComponentActivity() {
                         }
                     }
 
-                    LaunchedEffect(intent) {
-                        if (intent?.action == android.content.Intent.ACTION_SEND && intent.type?.startsWith("image/") == true) {
+                    LaunchedEffect(currentIntent) {
+                        val activeIntent = currentIntent
+                        if (activeIntent?.action == android.content.Intent.ACTION_SEND && activeIntent.type?.startsWith("image/") == true) {
                             @Suppress("DEPRECATION")
-                            val uri = intent.getParcelableExtra<android.net.Uri>(android.content.Intent.EXTRA_STREAM)
+                            val uri = activeIntent.getParcelableExtra<android.net.Uri>(android.content.Intent.EXTRA_STREAM)
                             if (uri != null) {
                                 com.HrshD1eux.Scan.camera.GalleryScanner.scanImage(context, uri) { barcodes ->
                                     if (barcodes.isNotEmpty()) {
@@ -198,9 +209,9 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             }
-                        } else if (intent?.action == "com.HrshD1eux.Scan.ACTION_SCAN_GALLERY") {
+                        } else if (activeIntent?.action == "com.HrshD1eux.Scan.ACTION_SCAN_GALLERY") {
                             galleryLauncher.launch("image/*")
-                        } else if (intent?.action == "com.HrshD1eux.Scan.ACTION_VIEW_HISTORY") {
+                        } else if (activeIntent?.action == "com.HrshD1eux.Scan.ACTION_VIEW_HISTORY") {
                             currentScreen = "history"
                         }
                     }

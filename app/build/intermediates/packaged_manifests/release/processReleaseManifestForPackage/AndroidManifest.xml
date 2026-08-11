@@ -82,6 +82,7 @@
         <activity
             android:name="com.HrshD1eux.Scan.MainActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.Scan"
             android:windowSoftInputMode="adjustResize" >
             <intent-filter>

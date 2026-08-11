@@ -1,5 +1,7 @@
 package com.HrshD1eux.Scan.ui.settings
 
+import android.os.Build
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -20,6 +22,8 @@ fun SettingsScreen(settingsManager: SettingsManager, onBack: () -> Unit, onAbout
     val autoOpenUrls by settingsManager.autoOpenUrlsFlow.collectAsState(initial = false)
     val batchScanMode by settingsManager.batchScanModeFlow.collectAsState(initial = false)
     val torchSuggestion by settingsManager.torchSuggestionFlow.collectAsState(initial = true)
+    val autoCopy by settingsManager.autoCopyFlow.collectAsState(initial = false)
+    val dynamicColors by settingsManager.dynamicColorsFlow.collectAsState(initial = true)
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text("Settings", style = MaterialTheme.typography.headlineMedium)
@@ -46,6 +50,16 @@ fun SettingsScreen(settingsManager: SettingsManager, onBack: () -> Unit, onAbout
         SettingSwitch("Suggest Flashlight in Low Light", torchSuggestion) {
             scope.launch { settingsManager.setTorchSuggestion(it) }
         }
+        SettingSwitch("Auto-Copy Scanned Codes", autoCopy) {
+            scope.launch { settingsManager.setAutoCopy(it) }
+        }
+        SettingSwitch(
+            label = "Use Wallpaper Colors (Material You)",
+            checked = dynamicColors,
+            enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+        ) {
+            scope.launch { settingsManager.setDynamicColors(it) }
+        }
         
         
         Spacer(modifier = Modifier.weight(1f))
@@ -60,13 +74,17 @@ fun SettingsScreen(settingsManager: SettingsManager, onBack: () -> Unit, onAbout
 }
 
 @Composable
-fun SettingSwitch(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
+fun SettingSwitch(label: String, checked: Boolean, enabled: Boolean = true, onCheckedChange: (Boolean) -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(label, style = MaterialTheme.typography.bodyLarge)
-        Switch(checked = checked, onCheckedChange = onCheckedChange)
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyLarge,
+            color = if (enabled) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+        )
+        Switch(checked = checked, onCheckedChange = onCheckedChange, enabled = enabled)
     }
 }
