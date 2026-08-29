@@ -211,6 +211,47 @@
             transform: translateY(-2px);
         }
 
+        /* Screenshots */
+        .screenshots-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 88px;
+            justify-items: center;
+        }
+
+        .screenshot-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+            max-width: 250px;
+            width: 100%;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: #bfdbfe;
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            border-radius: 14px;
+            display: block;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .screenshot-card span {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
         /* Features */
         .section-title {
             text-align: center;
@@ -427,6 +468,26 @@
                 </a>
             </div>
         </section>
+
+        <!-- Screenshots Gallery -->
+        <div class="screenshots-container">
+            <div class="screenshot-card">
+                <img src="screenshots/home.png" alt="Instant Viewfinder">
+                <span>Scanner Viewfinder</span>
+            </div>
+            <div class="screenshot-card">
+                <img src="screenshots/Share-qr.png" alt="Offline QR Share">
+                <span>Offline QR Transfer</span>
+            </div>
+            <div class="screenshot-card">
+                <img src="screenshots/history.png" alt="Scan History & Notes">
+                <span>History & CSV Export</span>
+            </div>
+            <div class="screenshot-card">
+                <img src="screenshots/setting.png" alt="App Settings & Sensors">
+                <span>Settings & Sensors</span>
+            </div>
+        </div>
 
         <!-- Feature Grid -->
         <div class="features-grid">

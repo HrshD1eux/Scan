@@ -21,6 +21,15 @@
 
 Scan starts directly into the viewfinder without startup lag or ads. It detects multiple barcode formats on-device, classifies content into actionable types (UPI payments, URLs, Wi-Fi credentials, vCards, SMS, coordinates, OTPs), and triggers corresponding native Android system handlers.
 
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/home.png" width="23%" alt="Scanner Viewfinder" style="border-radius: 12px; margin: 4px;">
+  <img src="screenshots/Share-qr.png" width="23%" alt="Offline QR Share" style="border-radius: 12px; margin: 4px;">
+  <img src="screenshots/history.png" width="23%" alt="Scan History" style="border-radius: 12px; margin: 4px;">
+  <img src="screenshots/setting.png" width="23%" alt="Settings" style="border-radius: 12px; margin: 4px;">
+</p>
+
 ### Key Features
 
 - **Instant Viewfinder:** Powered by CameraX `ImageAnalysis` operating at 1080p with continuous frame debounce.
