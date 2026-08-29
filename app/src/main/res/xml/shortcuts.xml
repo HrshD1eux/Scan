@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="scan_gallery"
+        android:enabled="true"
+        android:icon="@drawable/ic_qs_scanner"
+        android:shortcutShortLabel="@string/shortcut_gallery_short"
+        android:shortcutLongLabel="@string/shortcut_gallery_long">
+        <intent
+            android:action="com.HrshD1eux.Scan.ACTION_SCAN_GALLERY"
+            android:targetPackage="com.HrshD1eux.Scan"
+            android:targetClass="com.HrshD1eux.Scan.MainActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="view_history"
+        android:enabled="true"
+        android:icon="@drawable/ic_qs_scanner"
+        android:shortcutShortLabel="@string/shortcut_history_short"
+        android:shortcutLongLabel="@string/shortcut_history_long">
+        <intent
+            android:action="com.HrshD1eux.Scan.ACTION_VIEW_HISTORY"
+            android:targetPackage="com.HrshD1eux.Scan"
+            android:targetClass="com.HrshD1eux.Scan.MainActivity" />
+    </shortcut>
+</shortcuts>
