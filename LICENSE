@@ -619,3 +619,21 @@ Program, unless a warranty or assumption of liability accompanies a
 copy of the Program in return for a fee.
 
                      END OF TERMS AND CONDITIONS
+
+
+----------------------------------------------------------------------
+Copyright (C) 2024-2026 HrshD1eux <https://github.com/HrshD1eux/Scan>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Additional permission under GNU GPL version 3 section 7:
+
+As a special exception, the copyright holders of this work give you permission
+to link this program with independent modules and libraries, including Google ML
+Kit, Android Jetpack, Google Play Services, and ZXing, and to distribute the
+resulting executable under terms of your choice, provided that you also meet the
+terms and conditions of the licenses of those independent modules.
+----------------------------------------------------------------------

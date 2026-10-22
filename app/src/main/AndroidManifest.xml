@@ -22,15 +22,13 @@
     <!-- Install packages for updates -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
-    <!-- Queries to check if intents can be resolved (e.g., UPI, WhatsApp) -->
+    <!-- Queries to check if intents can be resolved (e.g., UPI, Web, OTP) -->
     <queries>
         <!-- UPI apps -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="upi" />
         </intent>
-        <!-- WhatsApp -->
-        <package android:name="com.whatsapp" />
         <!-- Web Browser -->
         <intent>
             <action android:name="android.intent.action.VIEW" />

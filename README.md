@@ -12,6 +12,7 @@
 <p align="center">
   <a href="https://github.com/HrshD1eux/Scan/releases/latest"><img src="https://img.shields.io/github/v/release/HrshD1eux/Scan?color=2563eb&label=Download%20APK" alt="Download APK"></a>
   <a href="https://hrshd1eux.github.io/Scan/"><img src="https://img.shields.io/badge/GitHub%20Pages-Live%20Website-4f46e5" alt="Live Website"></a>
+  <a href="PRIVACY.md"><img src="https://img.shields.io/badge/Privacy-100%25%20On--Device-success" alt="Privacy Policy"></a>
   <a href="https://github.com/HrshD1eux/Scan/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0-blue" alt="License: GPL-3.0"></a>
 </p>
 
@@ -91,6 +92,24 @@ app/src/main/java/com/HrshD1eux/Scan/
 
 ---
 
-## License
+## Privacy
 
-This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for details.
+Scan is engineered from the ground up to be **100% on-device with zero trackers, zero analytics, and zero advertising**. Camera frames are processed strictly in volatile device memory and discarded immediately. No data is ever transmitted to remote servers. See the complete [Privacy Policy](PRIVACY.md) for details.
+
+---
+
+## License & Ownership
+
+Copyright &copy; 2024&ndash;2026 **HrshD1eux**. All rights reserved.
+
+This project is free software licensed under the **GNU General Public License v3.0 (GPL-3.0)** with an explicit Section 7 linking exception for Google Play Services / ML Kit, Android Jetpack, and ZXing runtime libraries. See the [LICENSE](LICENSE) file for the full legal text.
+
+---
+
+## Legal Notices & Trademarks
+
+- **QR Code** is a registered trademark of **DENSO WAVE INCORPORATED** in Japan and other countries.
+- **Android**, **Google Play**, **Google Maps**, and **ML Kit** are trademarks of **Google LLC**.
+- **UPI** is a registered trademark of the **National Payments Corporation of India (NPCI)**.
+- All other trademarks, service marks, and company names are the property of their respective owners.
+- **Disclaimer:** Scan is an independent open-source project and is not affiliated with, sponsored by, or endorsed by Google LLC, DENSO WAVE INCORPORATED, NPCI, or any payment provider. The software is provided "AS IS", without warranty of any kind.
