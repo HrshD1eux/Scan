@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ContentCopy
@@ -25,6 +27,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.HrshD1eux.Scan.actions.ActionResolver
 import com.HrshD1eux.Scan.history.HistoryDatabase
@@ -66,16 +69,27 @@ fun HistoryScreen(
         }
     }
 
-    // Auto-discover distinct types in history + standard types
+    // Auto-heal legacy or obfuscated single-letter types ("j", "i", "k", "h", etc.) in SQLite
+    LaunchedEffect(historyItems) {
+        historyItems.forEach { item ->
+            val cleanType = resolveDisplayType(item.type, item.rawValue)
+            if (item.type != cleanType) {
+                historyDao.updateType(item.id, cleanType)
+            }
+        }
+    }
+
+    // Auto-discover distinct clean types in history + "All"
     val availableFilters = remember(historyItems) {
-        val discoveredTypes = historyItems.map { it.type }.distinct().filter { it.isNotBlank() }
+        val discoveredTypes = historyItems.map { resolveDisplayType(it.type, it.rawValue) }.distinct()
         listOf("All") + discoveredTypes
     }
 
     // Filtered items based on search and type chip
     val filteredItems = remember(historyItems, searchQuery, selectedFilter) {
         historyItems.filter { item ->
-            val matchesFilter = selectedFilter == "All" || item.type.equals(selectedFilter, ignoreCase = true)
+            val itemType = resolveDisplayType(item.type, item.rawValue)
+            val matchesFilter = selectedFilter == "All" || itemType.equals(selectedFilter, ignoreCase = true)
             val matchesQuery = searchQuery.isBlank() ||
                     item.primaryValue.contains(searchQuery, ignoreCase = true) ||
                     item.rawValue.contains(searchQuery, ignoreCase = true) ||
@@ -91,8 +105,25 @@ fun HistoryScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Scan History", style = MaterialTheme.typography.headlineMedium)
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.weight(1f)
+            ) {
+                IconButton(onClick = onBack, modifier = Modifier.size(40.dp)) {
+                    Icon(
+                        Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back to Scanner"
+                    )
+                }
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    "Scan History",
+                    style = MaterialTheme.typography.titleLarge,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 TextButton(
                     onClick = {
                         scope.launch {
@@ -107,41 +138,60 @@ fun HistoryScreen(
                                 }
                         }
                     },
-                    enabled = historyItems.isNotEmpty()
+                    enabled = historyItems.isNotEmpty(),
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
                 ) {
-                    Text("Export")
+                    Text("Export", style = MaterialTheme.typography.labelMedium)
                 }
                 TextButton(
                     onClick = { scope.launch { historyDao.clearHistory() } },
-                    enabled = historyItems.isNotEmpty()
+                    enabled = historyItems.isNotEmpty(),
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
                 ) {
-                    Text("Clear All")
+                    Text("Clear All", style = MaterialTheme.typography.labelMedium)
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
-        // Search Bar
+        // Search Bar (Strictly 1 line, responsive across all screen widths)
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            placeholder = { Text("Search scanned codes or notes...") },
-            leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search") },
+            placeholder = {
+                Text(
+                    "Search scans or notes...",
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            },
+            leadingIcon = {
+                Icon(
+                    Icons.Default.Search,
+                    contentDescription = "Search",
+                    modifier = Modifier.size(20.dp)
+                )
+            },
             trailingIcon = {
                 if (searchQuery.isNotEmpty()) {
-                    IconButton(onClick = { searchQuery = "" }) {
-                        Icon(Icons.Default.Close, contentDescription = "Clear search")
+                    IconButton(onClick = { searchQuery = "" }, modifier = Modifier.size(36.dp)) {
+                        Icon(Icons.Default.Close, contentDescription = "Clear search", modifier = Modifier.size(18.dp))
                     }
                 }
             },
             singleLine = true,
-            modifier = Modifier.fillMaxWidth()
+            maxLines = 1,
+            shape = RoundedCornerShape(24.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 48.dp, max = 56.dp)
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        // Quick Filter Chips (Auto-populated from data)
+        // Quick Filter Chips (Auto-populated with clean human-readable tags)
         if (availableFilters.size > 1) {
             Row(
                 modifier = Modifier
@@ -260,8 +310,11 @@ fun HistoryItemView(
                 verticalAlignment = Alignment.Top
             ) {
                 Column(modifier = Modifier.weight(1f)) {
+                    val displayType = remember(item.type, item.rawValue) {
+                        resolveDisplayType(item.type, item.rawValue)
+                    }
                     Text(
-                        item.type,
+                        displayType,
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -335,4 +388,29 @@ fun HistoryItemView(
             }
         }
     }
+}
+
+/**
+ * Resolves a human-readable, un-obfuscated type for display and filtering.
+ * Auto-repairs obfuscated single-letter types ("j", "i", "k", "h", etc.) by re-classifying rawValue.
+ */
+internal fun resolveDisplayType(type: String, rawValue: String): String {
+    val clean = when (type.trim().lowercase()) {
+        "url" -> "URL"
+        "upi" -> "UPI"
+        "wifi", "wi-fi" -> "Wi-Fi"
+        "otp" -> "OTP"
+        "sms" -> "SMS"
+        "text" -> "Text"
+        "phone" -> "Phone"
+        "email" -> "Email"
+        "product" -> "Product"
+        "contact" -> "Contact"
+        "geo", "location" -> "Location"
+        "barcode", "unknownbarcode" -> "Barcode"
+        else -> null
+    }
+    if (clean != null) return clean
+
+    return ContentClassifier.classifyRaw(rawValue).typeName
 }

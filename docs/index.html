@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scan — Lightweight, Privacy-First Android QR & Barcode Scanner</title>
-    <meta name="description" content="A blazing fast, on-device QR and barcode scanner for Android built with Jetpack Compose, CameraX, and ML Kit. Zero trackers, zero ads, 100% open source.">
+    <meta name="description" content="A blazing fast, on-device QR and barcode scanner for Android built with Jetpack Compose and CameraX. Zero trackers, zero ads, 100% open source.">
     <link rel="icon" type="image/png" href="icon.png">
     <style>
         :root {
@@ -112,10 +112,13 @@
         .hero-icon {
             width: 96px;
             height: 96px;
-            border-radius: 24px;
-            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06);
+            border-radius: 22px;
+            filter: drop-shadow(0 14px 28px rgba(37, 99, 235, 0.22));
             margin: 0 auto 20px auto;
             display: block;
+            background: transparent;
+            border: none;
+            padding: 0;
             transition: transform 0.3s ease;
         }
 
@@ -460,7 +463,7 @@
             </div>
             <h1>Instant Scanning.<br><span class="gradient-text">Zero Compromises.</span></h1>
             <p>
-                A high-performance Android QR and barcode scanner engineered with Jetpack Compose, CameraX, and Google ML Kit. Immediate viewfinder launch, instant intent dispatch, and offline face-to-face QR transfer.
+                A high-performance Android QR and barcode scanner engineered with Jetpack Compose and CameraX. Immediate viewfinder launch, instant intent dispatch, and offline face-to-face QR transfer.
             </p>
             <div class="cta-group">
                 <a href="https://github.com/HrshD1eux/Scan/releases/latest/download/app-release.apk" class="btn-primary">
@@ -631,7 +634,7 @@
                 <a href="https://github.com/HrshD1eux/Scan/issues">Issue Tracker</a>
             </p>
             <p style="margin-top: 14px; font-size: 0.8rem; color: #94a3b8; line-height: 1.5; max-width: 820px; margin-left: auto; margin-right: auto;">
-                QR Code is a registered trademark of DENSO WAVE INCORPORATED in Japan and other countries. Android, Google Play, Google Maps, and ML Kit are trademarks of Google LLC. UPI is a registered trademark of NPCI. All other trademarks are the property of their respective owners. Scan is an independent open-source project and is not affiliated with, sponsored by, or endorsed by Google LLC, DENSO WAVE, NPCI, or any payment provider. The software is provided "AS IS", without warranty of any kind.
+                QR Code is a registered trademark of DENSO WAVE INCORPORATED in Japan and other countries. Android, Google Play, and Google Maps are trademarks of Google LLC. UPI is a registered trademark of NPCI. All other trademarks are the property of their respective owners. Scan is an independent open-source project and is not affiliated with, sponsored by, or endorsed by Google LLC, DENSO WAVE, NPCI, or any payment provider. The software is provided "AS IS", without warranty of any kind.
             </p>
         </footer>
     </div>

@@ -19,6 +19,12 @@
     <!-- Vibrate for haptic feedback -->
     <uses-permission android:name="android.permission.VIBRATE" />
     
+    <!-- Legacy storage write for API 24-28 gallery saving -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />
+    
     <!-- Install packages for updates -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 

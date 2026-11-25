@@ -36,6 +36,11 @@ import kotlinx.coroutines.launch
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Image
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.foundation.shape.RoundedCornerShape
 
 @androidx.camera.core.ExperimentalGetImage
@@ -130,55 +135,59 @@ fun ScannerScreen(
                 modifier = Modifier.fillMaxSize()
             )
 
-            // Top action: Share / Create QR
-            IconButton(
-                onClick = onShareQrClick,
+            // Safe Top Action Bar
+            Row(
                 modifier = Modifier
-                    .align(Alignment.TopStart)
-                    .padding(top = 40.dp, start = 20.dp)
-                    .background(Color.Black.copy(alpha = 0.5f), shape = CircleShape)
-                    .size(48.dp)
+                    .fillMaxWidth()
+                    .align(Alignment.TopCenter)
+                    .statusBarsPadding()
+                    .padding(horizontal = 16.dp, vertical = 10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    imageVector = Icons.Default.QrCode,
-                    contentDescription = "Share or Generate QR",
-                    tint = Color.White
-                )
-            }
-
-            // Top action: Incognito Mode Toggle
-            IconButton(
-                onClick = onToggleIncognito,
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(top = 40.dp, end = 20.dp)
-                    .background(
-                        if (isIncognito) MaterialTheme.colorScheme.primaryContainer else Color.Black.copy(alpha = 0.5f),
-                        shape = CircleShape
-                    )
-                    .size(48.dp)
-            ) {
-                Icon(
-                    imageVector = if (isIncognito) Icons.Default.VisibilityOff else Icons.Default.Visibility,
-                    contentDescription = "Toggle Incognito Mode",
-                    tint = if (isIncognito) MaterialTheme.colorScheme.onPrimaryContainer else Color.White
-                )
-            }
-
-            // Incognito Status Pill
-            if (isIncognito) {
-                Surface(
-                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.9f),
-                    shape = RoundedCornerShape(20.dp),
+                IconButton(
+                    onClick = onShareQrClick,
                     modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .padding(top = 46.dp)
+                        .background(Color.Black.copy(alpha = 0.5f), shape = CircleShape)
+                        .size(46.dp)
                 ) {
-                    Text(
-                        "Incognito (0 saved)",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                    Icon(
+                        imageVector = Icons.Default.QrCode,
+                        contentDescription = "Share or Generate QR",
+                        tint = Color.White
+                    )
+                }
+
+                if (isIncognito) {
+                    Surface(
+                        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.95f),
+                        shape = RoundedCornerShape(20.dp),
+                        shadowElevation = 3.dp
+                    ) {
+                        Text(
+                            "Incognito (0 saved)",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                        )
+                    }
+                } else {
+                    Spacer(modifier = Modifier.weight(1f, fill = false))
+                }
+
+                IconButton(
+                    onClick = onToggleIncognito,
+                    modifier = Modifier
+                        .background(
+                            if (isIncognito) MaterialTheme.colorScheme.primaryContainer else Color.Black.copy(alpha = 0.5f),
+                            shape = CircleShape
+                        )
+                        .size(46.dp)
+                ) {
+                    Icon(
+                        imageVector = if (isIncognito) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                        contentDescription = "Toggle Incognito Mode",
+                        tint = if (isIncognito) MaterialTheme.colorScheme.onPrimaryContainer else Color.White
                     )
                 }
             }
@@ -191,7 +200,8 @@ fun ScannerScreen(
                     },
                     modifier = Modifier
                         .align(Alignment.TopEnd)
-                        .padding(top = 100.dp, end = 20.dp)
+                        .statusBarsPadding()
+                        .padding(top = 70.dp, end = 16.dp)
                 )
             }
 
@@ -209,7 +219,8 @@ fun ScannerScreen(
                     shadowElevation = 6.dp,
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
-                        .padding(bottom = 96.dp)
+                        .navigationBarsPadding()
+                        .padding(bottom = 88.dp)
                 ) {
                     Row(
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
@@ -246,9 +257,10 @@ fun ScannerScreen(
                 onHistoryClick = onHistoryClick,
                 onSettingsClick = onSettingsClick,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .padding(horizontal = 16.dp, vertical = 32.dp)
+                    .navigationBarsPadding()
+                    .padding(horizontal = 16.dp, vertical = 14.dp)
+                    .fillMaxWidth()
             )
         }
     } else {
@@ -267,26 +279,80 @@ private fun ScannerControlBar(
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
+    Surface(
+        color = Color.Black.copy(alpha = 0.65f),
+        shape = RoundedCornerShape(26.dp),
+        shadowElevation = 8.dp,
+        modifier = modifier
     ) {
-        FilledTonalButton(onClick = onHistoryClick) { Text("History") }
-
-        IconButton(
-            onClick = onToggleFlashlight,
-            modifier = Modifier.background(Color.Black.copy(alpha = 0.5f), shape = MaterialTheme.shapes.medium)
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 8.dp, vertical = 6.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = if (isFlashlightOn) Icons.Default.FlashlightOn else Icons.Default.FlashlightOff,
-                contentDescription = "Flashlight",
-                tint = Color.White
+            ScannerBarItem(
+                icon = Icons.Default.History,
+                label = "History",
+                onClick = onHistoryClick
+            )
+
+            ScannerBarItem(
+                icon = if (isFlashlightOn) Icons.Default.FlashlightOn else Icons.Default.FlashlightOff,
+                label = "Torch",
+                isActive = isFlashlightOn,
+                onClick = onToggleFlashlight
+            )
+
+            ScannerBarItem(
+                icon = Icons.Default.Image,
+                label = "Gallery",
+                onClick = onGalleryClick
+            )
+
+            ScannerBarItem(
+                icon = Icons.Default.Settings,
+                label = "Settings",
+                onClick = onSettingsClick
             )
         }
+    }
+}
 
-        FilledTonalButton(onClick = onGalleryClick) { Text("Gallery") }
-        FilledTonalButton(onClick = onSettingsClick) { Text("Settings") }
+@Composable
+private fun RowScope.ScannerBarItem(
+    icon: ImageVector,
+    label: String,
+    isActive: Boolean = false,
+    onClick: () -> Unit
+) {
+    Surface(
+        onClick = onClick,
+        shape = RoundedCornerShape(18.dp),
+        color = if (isActive) MaterialTheme.colorScheme.primary else Color.Transparent,
+        contentColor = if (isActive) MaterialTheme.colorScheme.onPrimary else Color.White,
+        modifier = Modifier
+            .weight(1f)
+            .padding(horizontal = 2.dp)
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(vertical = 8.dp, horizontal = 2.dp)
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = label,
+                modifier = Modifier.size(22.dp)
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelSmall,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
     }
 }
 

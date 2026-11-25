@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>A lightweight, privacy-first Android QR and barcode scanner.</strong><br>
-  Built with Jetpack Compose, CameraX, and Google ML Kit.
+  Built with Jetpack Compose, CameraX, and high-performance on-device vision.
 </p>
 
 <p align="center">
@@ -52,7 +52,7 @@ The project adheres to modern Android engineering best practices:
 
 - **UI Layer:** Jetpack Compose with Material 3 theming (supports Dynamic Color / Material You on Android 12+).
 - **State Management:** `MainViewModel` utilizing Kotlin Coroutines and `StateFlow` for unidirectional data flow.
-- **Vision Pipeline:** Google ML Kit barcode vision pipeline with ZXing fallback encoders.
+- **Vision Pipeline:** On-device barcode vision pipeline with ZXing fallback encoders.
 - **Storage:** Room Database for persistent scan records and Jetpack DataStore Preferences for user configuration.
 
 ---
@@ -67,7 +67,7 @@ app/src/main/java/com/HrshD1eux/Scan/
 ├── actions/               # Intent creation and system action dispatchers
 ├── camera/                # CameraX analyzer, preview, and sensor managers
 ├── history/               # Room entities, DAO, migrations, and CSV export
-├── parser/                # ML Kit barcode classification and content models
+├── parser/                # Barcode classification and structured content models
 ├── scanner/               # Multi-item sliding LRU duplicate debounce
 ├── ui/                    # Jetpack Compose UI screens, components, and theme
 ├── updater/               # In-app update manager and package installer
@@ -112,7 +112,7 @@ This project is free software licensed under the **GNU General Public License v3
 ## Legal Notices & Trademarks
 
 - **QR Code** is a registered trademark of **DENSO WAVE INCORPORATED** in Japan and other countries.
-- **Android**, **Google Play**, **Google Maps**, and **ML Kit** are trademarks of **Google LLC**.
+- **Android**, **Google Play**, and **Google Maps** are trademarks of **Google LLC**.
 - **UPI** is a registered trademark of the **National Payments Corporation of India (NPCI)**.
 - All other trademarks, service marks, and company names are the property of their respective owners.
 - **Disclaimer:** Scan is an independent open-source project and is not affiliated with, sponsored by, or endorsed by Google LLC, DENSO WAVE INCORPORATED, NPCI, or any payment provider. The software is provided "AS IS", without warranty of any kind.

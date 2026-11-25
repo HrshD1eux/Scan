@@ -7,6 +7,22 @@ sealed class ParsedContent {
     abstract val displayTitle: String
     open val displaySummary: String get() = primaryValue
 
+    open val typeName: String
+        get() = when (this) {
+            is Upi -> "UPI"
+            is Url -> "URL"
+            is Wifi -> "Wi-Fi"
+            is Phone -> "Phone"
+            is Email -> "Email"
+            is Text -> "Text"
+            is Product -> "Product"
+            is Otp -> "OTP"
+            is Contact -> "Contact"
+            is Geo -> "Location"
+            is Sms -> "SMS"
+            is UnknownBarcode -> "Barcode"
+        }
+
     data class Upi(
         val upiId: String,
         val payeeName: String?,

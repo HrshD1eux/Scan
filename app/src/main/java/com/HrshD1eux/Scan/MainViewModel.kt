@@ -134,7 +134,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
             if (settings.saveHistory && !_isIncognito.value) {
                 val entity = HistoryEntity(
-                    type = content::class.simpleName ?: "Unknown",
+                    type = content.typeName,
                     primaryValue = content.primaryValue,
                     rawValue = rawValue
                 )

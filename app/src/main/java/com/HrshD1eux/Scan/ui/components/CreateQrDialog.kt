@@ -1,10 +1,13 @@
 package com.HrshD1eux.Scan.ui.components
 
+import android.Manifest
 import android.content.ClipboardManager
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
@@ -27,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.HrshD1eux.Scan.utils.QrCodeGenerator
 import java.io.File
@@ -329,24 +333,54 @@ fun CreateQrDialog(
 private fun saveQrToGallery(context: Context, bitmap: Bitmap) {
     try {
         val filename = "QR_${System.currentTimeMillis()}.png"
-        val outputStream: OutputStream?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val contentValues = ContentValues().apply {
                 put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
                 put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
                 put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/Scan")
+                put(MediaStore.MediaColumns.IS_PENDING, 1)
             }
             val uri = context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-            outputStream = uri?.let { context.contentResolver.openOutputStream(it) }
+            if (uri != null) {
+                context.contentResolver.openOutputStream(uri)?.use { out ->
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+                }
+                contentValues.clear()
+                contentValues.put(MediaStore.MediaColumns.IS_PENDING, 0)
+                context.contentResolver.update(uri, contentValues, null, null)
+                Toast.makeText(context, "QR saved to Pictures/Scan", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Failed to create MediaStore entry", Toast.LENGTH_SHORT).show()
+            }
         } else {
-            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
-            val file = File(imagesDir, filename)
-            outputStream = FileOutputStream(file)
+            // Android 7.0 - 9.0 (API 24-28)
+            val hasPermission = ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+
+            val targetDir = if (hasPermission) {
+                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Scan").apply { mkdirs() }
+            } else {
+                File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Scan").apply { mkdirs() }
+            }
+
+            val file = File(targetDir, filename)
+            FileOutputStream(file).use { out ->
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+            }
+
+            // Index file into Android system gallery
+            MediaScannerConnection.scanFile(
+                context,
+                arrayOf(file.absolutePath),
+                arrayOf("image/png"),
+                null
+            )
+
+            val msg = if (hasPermission) "QR saved to Pictures/Scan" else "QR saved to app storage"
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
         }
-        outputStream?.use { out ->
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
-        }
-        Toast.makeText(context, "QR saved to Pictures/Scan", Toast.LENGTH_SHORT).show()
     } catch (e: Exception) {
         Toast.makeText(context, "Failed to save: ${e.localizedMessage ?: "Storage error"}", Toast.LENGTH_SHORT).show()
     }
