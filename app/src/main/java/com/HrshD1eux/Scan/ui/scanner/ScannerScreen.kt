@@ -33,13 +33,23 @@ import androidx.compose.animation.core.*
 import androidx.compose.ui.graphics.graphicsLayer
 import kotlinx.coroutines.launch
 
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.foundation.shape.RoundedCornerShape
+
 @androidx.camera.core.ExperimentalGetImage
 @Composable
 fun ScannerScreen(
     onScanSuccess: (List<Barcode>) -> Unit,
     onSettingsClick: () -> Unit,
     onHistoryClick: () -> Unit,
-    onShareQrClick: () -> Unit
+    onShareQrClick: () -> Unit,
+    isIncognito: Boolean = false,
+    onToggleIncognito: () -> Unit = {},
+    isBatchMode: Boolean = false,
+    batchCount: Int = 0,
+    onResetBatch: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val settingsManager = remember { SettingsManager(context) }
@@ -136,6 +146,43 @@ fun ScannerScreen(
                 )
             }
 
+            // Top action: Incognito Mode Toggle
+            IconButton(
+                onClick = onToggleIncognito,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(top = 40.dp, end = 20.dp)
+                    .background(
+                        if (isIncognito) MaterialTheme.colorScheme.primaryContainer else Color.Black.copy(alpha = 0.5f),
+                        shape = CircleShape
+                    )
+                    .size(48.dp)
+            ) {
+                Icon(
+                    imageVector = if (isIncognito) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                    contentDescription = "Toggle Incognito Mode",
+                    tint = if (isIncognito) MaterialTheme.colorScheme.onPrimaryContainer else Color.White
+                )
+            }
+
+            // Incognito Status Pill
+            if (isIncognito) {
+                Surface(
+                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.9f),
+                    shape = RoundedCornerShape(20.dp),
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .padding(top = 46.dp)
+                ) {
+                    Text(
+                        "Incognito (0 saved)",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                    )
+                }
+            }
+
             if (torchSuggestionEnabled && isLowLightDetected && !isFlashlightOn) {
                 TorchSuggestionButton(
                     onEnableFlashlight = {
@@ -144,7 +191,7 @@ fun ScannerScreen(
                     },
                     modifier = Modifier
                         .align(Alignment.TopEnd)
-                        .padding(top = 36.dp, end = 20.dp)
+                        .padding(top = 100.dp, end = 20.dp)
                 )
             }
 
@@ -153,6 +200,41 @@ fun ScannerScreen(
                     .fillMaxSize()
                     .padding(bottom = 80.dp)
             )
+
+            // Batch Mode Floating Counter HUD
+            if (isBatchMode) {
+                Surface(
+                    color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.95f),
+                    shape = RoundedCornerShape(16.dp),
+                    shadowElevation = 6.dp,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(bottom = 96.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Text(
+                            "⚡ Batch Mode: $batchCount scanned",
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        TextButton(
+                            onClick = onHistoryClick,
+                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
+                        ) {
+                            Text("View")
+                        }
+                        if (batchCount > 0) {
+                            IconButton(onClick = onResetBatch, modifier = Modifier.size(24.dp)) {
+                                Icon(Icons.Default.Refresh, contentDescription = "Reset batch counter")
+                            }
+                        }
+                    }
+                }
+            }
 
             ScannerControlBar(
                 isFlashlightOn = isFlashlightOn,

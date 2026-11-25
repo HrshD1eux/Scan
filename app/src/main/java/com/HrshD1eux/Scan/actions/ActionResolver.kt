@@ -22,7 +22,12 @@ import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.QrCode
 import com.HrshD1eux.Scan.parser.ParsedContent
 
-class ActionResolver(private val context: Context, private val onShowQr: () -> Unit) {
+class ActionResolver(
+    private val context: Context,
+    private val productSearchEngine: String = "DuckDuckGo",
+    private val customSearchUrl: String = "",
+    private val onShowQr: () -> Unit
+) {
 
     fun resolve(content: ParsedContent): List<Action> {
         val actions = mutableListOf<Action>()
@@ -109,9 +114,25 @@ class ActionResolver(private val context: Context, private val onShowQr: () -> U
                 actions.add(createCopyAction(content.address))
             }
             is ParsedContent.Product -> {
+                val searchUrl = when (productSearchEngine) {
+                    "DuckDuckGo" -> "https://duckduckgo.com/?q=${content.barcode}"
+                    "Open Food Facts" -> "https://world.openfoodfacts.org/product/${content.barcode}"
+                    "Amazon" -> "https://www.amazon.com/s?k=${content.barcode}"
+                    "Google" -> "https://www.google.com/search?q=${content.barcode}"
+                    "Custom" -> {
+                        if (customSearchUrl.isNotBlank() && (customSearchUrl.contains("{barcode}") || customSearchUrl.contains("{code}"))) {
+                            customSearchUrl.replace("{barcode}", content.barcode).replace("{code}", content.barcode)
+                        } else if (customSearchUrl.isNotBlank()) {
+                            customSearchUrl + content.barcode
+                        } else {
+                            "https://duckduckgo.com/?q=${content.barcode}"
+                        }
+                    }
+                    else -> "https://duckduckgo.com/?q=${content.barcode}"
+                }
                 actions.add(
-                    Action("Search Web", Icons.Default.Search, isPrimary = true) {
-                        val uri = Uri.parse("https://www.google.com/search?q=${content.barcode}")
+                    Action("Search Product ($productSearchEngine)", Icons.Default.Search, isPrimary = true) {
+                        val uri = Uri.parse(searchUrl)
                         try {
                             androidx.browser.customtabs.CustomTabsIntent.Builder().build().launchUrl(context, uri)
                         } catch (e: Exception) {

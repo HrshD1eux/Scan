@@ -22,4 +22,7 @@ interface HistoryDao {
 
     @Query("UPDATE history_table SET note = :note WHERE id = :id")
     suspend fun updateNote(id: Int, note: String?)
+
+    @Query("DELETE FROM history_table WHERE timestamp < :cutoffTimestamp")
+    suspend fun deleteOlderThan(cutoffTimestamp: Long): Int
 }

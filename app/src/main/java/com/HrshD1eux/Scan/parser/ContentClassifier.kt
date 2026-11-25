@@ -5,6 +5,48 @@ import com.google.mlkit.vision.barcode.common.Barcode
 
 object ContentClassifier {
 
+    fun classifyRaw(rawValue: String): ParsedContent {
+        if (rawValue.isBlank()) return ParsedContent.Text("")
+        if (rawValue.startsWith("otpauth://", ignoreCase = true)) {
+            return parseOtp(rawValue)
+        }
+        if (rawValue.startsWith("upi://pay", ignoreCase = true)) {
+            return parseUpi(rawValue)
+        }
+        if (rawValue.startsWith("http://", ignoreCase = true) || rawValue.startsWith("https://", ignoreCase = true)) {
+            return ParsedContent.Url(rawValue, rawValue.startsWith("https://", ignoreCase = true))
+        }
+        if (rawValue.startsWith("WIFI:", ignoreCase = true)) {
+            val ssid = rawValue.substringAfter("S:", "").substringBefore(';')
+            val password = if (rawValue.contains("P:")) rawValue.substringAfter("P:", "").substringBefore(';') else null
+            val type = if (rawValue.contains("T:")) rawValue.substringAfter("T:", "").substringBefore(';') else "WPA"
+            return ParsedContent.Wifi(ssid, password, type)
+        }
+        if (rawValue.startsWith("tel:", ignoreCase = true)) {
+            return ParsedContent.Phone(rawValue.removePrefix("tel:"))
+        }
+        if (rawValue.startsWith("mailto:", ignoreCase = true)) {
+            return ParsedContent.Email(rawValue.removePrefix("mailto:"), null, null)
+        }
+        if (rawValue.startsWith("geo:", ignoreCase = true)) {
+            val coords = rawValue.removePrefix("geo:").substringBefore('?').split(',')
+            if (coords.size == 2) {
+                val lat = coords[0].toDoubleOrNull() ?: 0.0
+                val lon = coords[1].toDoubleOrNull() ?: 0.0
+                return ParsedContent.Geo(lat, lon, null)
+            }
+        }
+        if (rawValue.startsWith("smsto:", ignoreCase = true)) {
+            val number = rawValue.removePrefix("smsto:").substringBefore(':')
+            val body = if (rawValue.substringAfter("smsto:").contains(":")) rawValue.substringAfter("smsto:").substringAfter(":") else null
+            return ParsedContent.Sms(number, body)
+        }
+        if ((rawValue.length == 13 || rawValue.length == 8 || rawValue.length == 12) && rawValue.all { it.isDigit() }) {
+            return ParsedContent.Product(rawValue, 0)
+        }
+        return ParsedContent.Text(rawValue)
+    }
+
     fun classify(barcode: Barcode): ParsedContent {
         val rawValue = barcode.rawValue ?: return ParsedContent.Text("")
         

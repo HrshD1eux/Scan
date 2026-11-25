@@ -53,6 +53,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _detectedBarcodes = MutableStateFlow<List<Barcode>>(emptyList())
     val detectedBarcodes: StateFlow<List<Barcode>> = _detectedBarcodes.asStateFlow()
 
+    private val _isIncognito = MutableStateFlow(false)
+    val isIncognito: StateFlow<Boolean> = _isIncognito.asStateFlow()
+
+    private val _batchCount = MutableStateFlow(0)
+    val batchCount: StateFlow<Int> = _batchCount.asStateFlow()
+
     val dynamicColors = settingsManager.dynamicColorsFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
 
@@ -61,6 +67,28 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val torchSuggestion = settingsManager.torchSuggestionFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
+
+    val batchScanMode = settingsManager.batchScanModeFlow
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    val productSearchEngine = settingsManager.productSearchEngineFlow
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "DuckDuckGo")
+
+    val customSearchUrl = settingsManager.customSearchUrlFlow
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "")
+
+    fun toggleIncognito() {
+        _isIncognito.value = !_isIncognito.value
+    }
+
+    fun resetBatchCount() {
+        _batchCount.value = 0
+    }
+
+    fun openHistoryItem(content: ParsedContent) {
+        _scannedContent.value = content
+        _currentScreen.value = Screen.Scanner
+    }
 
     fun navigateTo(screen: Screen) {
         _currentScreen.value = screen
@@ -104,7 +132,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 copyToClipboard(rawValue)
             }
 
-            if (settings.saveHistory) {
+            if (settings.saveHistory && !_isIncognito.value) {
                 val entity = HistoryEntity(
                     type = content::class.simpleName ?: "Unknown",
                     primaryValue = content.primaryValue,
@@ -114,7 +142,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             if (settings.batchScanMode) {
-                Toast.makeText(context, "Scanned: ${content.displaySummary}", Toast.LENGTH_SHORT).show()
+                _batchCount.value += 1
+                Toast.makeText(context, "#${_batchCount.value}: ${content.displaySummary}", Toast.LENGTH_SHORT).show()
                 return@launch
             }
 

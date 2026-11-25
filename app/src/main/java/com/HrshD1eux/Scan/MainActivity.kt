@@ -55,11 +55,20 @@ class MainActivity : ComponentActivity() {
                     val currentScreen by viewModel.currentScreen.collectAsState()
                     val scannedContent by viewModel.scannedContent.collectAsState()
                     val detectedBarcodes by viewModel.detectedBarcodes.collectAsState()
+                    val isIncognito by viewModel.isIncognito.collectAsState()
+                    val batchCount by viewModel.batchCount.collectAsState()
+                    val isBatchMode by viewModel.batchScanMode.collectAsState()
+                    val productSearchEngine by viewModel.productSearchEngine.collectAsState()
+                    val customSearchUrl by viewModel.customSearchUrl.collectAsState()
                     var qrCodeDialogText by remember { mutableStateOf<String?>(null) }
                     var showCreateQrDialog by remember { mutableStateOf(false) }
 
-                    val actionResolver = remember {
-                        ActionResolver(context) {
+                    val actionResolver = remember(context, productSearchEngine, customSearchUrl) {
+                        ActionResolver(
+                            context = context,
+                            productSearchEngine = productSearchEngine,
+                            customSearchUrl = customSearchUrl
+                        ) {
                             scannedContent?.primaryValue?.let { qrCodeDialogText = it }
                         }
                     }
@@ -108,7 +117,12 @@ class MainActivity : ComponentActivity() {
                                     onScanSuccess = viewModel::onScanResult,
                                     onSettingsClick = { viewModel.navigateTo(Screen.Settings) },
                                     onHistoryClick = { viewModel.navigateTo(Screen.History) },
-                                    onShareQrClick = { showCreateQrDialog = true }
+                                    onShareQrClick = { showCreateQrDialog = true },
+                                    isIncognito = isIncognito,
+                                    onToggleIncognito = viewModel::toggleIncognito,
+                                    isBatchMode = isBatchMode,
+                                    batchCount = batchCount,
+                                    onResetBatch = viewModel::resetBatchCount
                                 )
                             } else if (detectedBarcodes.isNotEmpty()) {
                                 MultiCodeSelectionDialog(
@@ -136,7 +150,8 @@ class MainActivity : ComponentActivity() {
                         Screen.History -> {
                             HistoryScreen(
                                 onBack = { viewModel.navigateTo(Screen.Scanner) },
-                                onShowQr = { text -> qrCodeDialogText = text }
+                                onShowQr = { text -> qrCodeDialogText = text },
+                                onOpenResult = { content -> viewModel.openHistoryItem(content) }
                             )
                         }
                         Screen.About -> {

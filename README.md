@@ -33,12 +33,15 @@ Scan starts directly into the viewfinder without startup lag or ads. It detects 
 
 ### Key Features
 
-- **Instant Viewfinder:** Powered by CameraX `ImageAnalysis` operating at 1080p with continuous frame debounce.
+- **Instant Viewfinder:** Powered by CameraX `ImageAnalysis` operating at 1080p with continuous frame debounce, pinch-to-zoom, and tap-to-focus.
+- **Actionable Searchable History:** Real-time search, dynamic auto-filter chips (URLs, UPI, Wi-Fi, Products, Contacts), direct one-tap action dispatch from history cards, and CSV export.
+- **Offline QR Studio:** Generate structured QR codes for Wi-Fi networks, UPI payments, vCards/contacts, or plain text with one-tap "Save PNG to Gallery" and "Share QR Image".
+- **Continuous Batch Scanning HUD:** Dedicated inventory batch mode with floating on-screen item counter and audio/haptic feedback without leaving the camera.
+- **Private Incognito Mode:** One-tap viewfinder incognito toggle ensuring zero disk writes to history for sensitive scans, alongside configurable history auto-purge (7/30/90 days).
+- **Privacy-First Product Search:** Configurable barcode lookup defaulting to DuckDuckGo, Open Food Facts, Amazon, or custom URL templates.
 - **Deep Intent Routing:** Native dispatch for UPI payments, Wi-Fi configuration (`WifiNetworkSuggestion`), contacts, navigation, and web URLs via Chrome Custom Tabs.
-- **Offline QR Sharing:** Generate and display high-contrast QR codes directly from custom text or clipboard content for instant face-to-face transfer.
 - **Low-Light Assistant:** Ambient light sensor integration with automatic torch activation or pulse suggestion.
 - **Gallery & Share Sheet:** Scans images directly from the gallery or incoming Android share intents.
-- **Local History & CSV Export:** Encrypted Room SQLite database with custom notes and CSV export via Android `FileProvider`.
 - **System Integration:** Android Quick Settings Tile and App Shortcuts for instant access.
 
 ---

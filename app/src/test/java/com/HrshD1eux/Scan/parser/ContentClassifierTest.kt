@@ -112,4 +112,29 @@ class ContentClassifierTest {
         assertTrue(result is ParsedContent.Text)
         assertEquals("", (result as ParsedContent.Text).text)
     }
+
+    @Test
+    fun classifyRaw_url_identifiesUrl() {
+        val result = ContentClassifier.classifyRaw("https://hrshd1eux.github.io/Scan/")
+        assertTrue(result is ParsedContent.Url)
+        assertEquals("https://hrshd1eux.github.io/Scan/", (result as ParsedContent.Url).url)
+        assertTrue(result.isSecure)
+    }
+
+    @Test
+    fun classifyRaw_upi_identifiesUpi() {
+        val result = ContentClassifier.classifyRaw("upi://pay?pa=store@upi&pn=Grocery&am=100.00")
+        assertTrue(result is ParsedContent.Upi)
+        assertEquals("store@upi", (result as ParsedContent.Upi).upiId)
+        assertEquals("Grocery", result.payeeName)
+        assertEquals("100.00", result.amount)
+    }
+
+    @Test
+    fun classifyRaw_wifi_identifiesWifi() {
+        val result = ContentClassifier.classifyRaw("WIFI:T:WPA;S:HomeNetwork;P:Secret123;;")
+        assertTrue(result is ParsedContent.Wifi)
+        assertEquals("HomeNetwork", (result as ParsedContent.Wifi).ssid)
+        assertEquals("Secret123", result.password)
+    }
 }
